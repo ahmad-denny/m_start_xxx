@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Manajemen User - Region Sumatera Business Portal</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+    :root {
+        --primary-purple: #7c3aed;
+        --primary-dark: #4c1d95;
+
+        --bg-body: url('img/bg-web.png') center center / cover no-repeat fixed;
+        --bg-overlay: rgba(10, 5, 25, 0.65);
+        --text-main: #ffffff;
+        --text-muted: #d8b4fe;
+
+        --card-bg: rgba(15, 8, 30, 0.85);
+        --card-border: rgba(255, 255, 255, 0.12);
+        --card-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
+
+        --icon-bg: rgba(255, 255, 255, 0.08);
+        --icon-color: #fff;
+
+        --badge-bg: rgba(34, 197, 94, 0.15);
+        --badge-text: #4ade80;
+        --badge-border: rgba(34, 197, 94, 0.25);
+
+        --badge-bg-off: rgba(148, 163, 184, 0.15);
+        --badge-text-off: #94a3b8;
+        --badge-border-off: rgba(148, 163, 184, 0.3);
+
+        --badge-bg-admin: rgba(124, 58, 237, 0.18);
+        --badge-text-admin: #c4b5fd;
+        --badge-border-admin: rgba(124, 58, 237, 0.35);
+
+        --btn-grad-start: #9b5de5;
+        --btn-grad-end: #6441A5;
+        --btn-shadow: rgba(0,0,0,0.3);
+
+        --error-color: #f87171;
+        --error-bg: rgba(248, 113, 113, 0.12);
+        --error-border: rgba(248, 113, 113, 0.3);
+
+        --row-hover: rgba(255,255,255,0.04);
+        --input-bg: rgba(255, 255, 255, 0.08);
+    }
+
+    body.light-mode {
+        --bg-body: url('img/bg-web-light.png') center center / cover no-repeat fixed;
+        --bg-overlay: transparent;
+        --text-main: #1e293b;
+        --text-muted: #64748b;
+
+        --card-bg: rgba(255, 255, 255, 0.92);
+        --card-border: rgba(255, 255, 255, 1);
+        --card-shadow: 0 10px 30px -5px rgba(100, 65, 165, 0.1);
+
+        --icon-bg: #f5f3ff;
+        --icon-color: var(--primary-purple);
+
+        --badge-bg: #ecfdf5;
+        --badge-text: #059669;
+        --badge-border: #d1fae5;
+
+        --badge-bg-off: #f1f5f9;
+        --badge-text-off: #64748b;
+        --badge-border-off: #e2e8f0;
+
+        --badge-bg-admin: #f5f3ff;
+        --badge-text-admin: #6d28d9;
+        --badge-border-admin: #ddd6fe;
+
+        --btn-grad-start: #7c3aed;
+        --btn-grad-end: #4c1d95;
+        --btn-shadow: rgba(124, 58, 237, 0.3);
+
+        --row-hover: rgba(124, 58, 237, 0.05);
+        --input-bg: #f8fafc;
+    }
+
+    @media (max-width: 768px) {
+        :root { --bg-body: url('img/bg-mobile.png') center center / cover no-repeat fixed; }
+        body.light-mode { --bg-body: url('img/bg-mobile-light.png') center center / cover no-repeat fixed; }
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
+
+    body {
+        background: var(--bg-body);
+        color: var(--text-main);
+        min-height: 100vh;
+        min-height: 100dvh;
+        width: 100vw;
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+
+    body::before {
+        content: '';
+        position: fixed;
+        inset: 0;
+        background: var(--bg-overlay);
+        z-index: -1;
+        pointer-events: none;
+    }
+
+    .app-container {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 1.25rem 1.5rem 2rem;
+        max-width: 1300px;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.25rem;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .brand { display: flex; align-items: center; gap: 12px; }
+
+    .back-btn {
+        width: 40px; height: 40px; border-radius: 50%;
+        background: var(--card-bg); border: 1px solid var(--card-border);
+        color: var(--text-main); display: flex; align-items: center; justify-content: center;
+        cursor: pointer; text-decoration: none; flex-shrink: 0;
+        backdrop-filter: blur(10px);
+    }
+    .back-btn:hover { background: var(--primary-purple); color: #fff; border-color: var(--primary-purple); }
+
+    .brand-text h1 { font-size: 1.15rem; font-weight: 700; line-height: 1.2; }
+    .brand-text p { font-size: 0.78rem; color: var(--text-muted); }
+
+    .header-actions { display: flex; align-items: center; gap: 10px; }
+
+    .action-btn {
+        background: var(--card-bg);
+        border: 1px solid var(--card-border);
+        color: var(--text-main);
+        width: 38px; height: 38px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        font-size: 0.95rem;
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+        flex-shrink: 0;
+    }
+    .action-btn:hover { transform: scale(1.08); background: var(--primary-purple); color: #fff; border-color: var(--primary-purple); }
+
+    /* ACCESS DENIED / LOADING */
+    .center-screen {
+        flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center;
+        text-align: center; gap: 14px; padding: 2rem;
+    }
+    .center-screen i { font-size: 2.4rem; color: var(--error-color); }
+    .center-screen h2 { font-size: 1.2rem; }
+    .center-screen p { color: var(--text-muted); font-size: 0.85rem; max-width: 380px; }
+    .center-screen .btn-primary { margin-top: 6px; }
+
+    /* TOOLBAR */
+    .toolbar {
+        display: flex; flex-wrap: wrap; gap: 10px; align-items: center;
+        background: var(--card-bg); border: 1px solid var(--card-border);
+        border-radius: 16px; padding: 14px; margin-bottom: 1.1rem;
+        backdrop-filter: blur(20px);
+    }
+    .search-wrap { position: relative; flex: 1; min-width: 200px; }
+    .search-wrap i { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--text-muted); font-size: 0.85rem; }
+    .search-input {
+        width: 100%; padding: 10px 12px 10px 34px; border-radius: 10px;
+        border: 1px solid var(--card-border); background: var(--input-bg);
+        color: var(--text-main); font-size: 0.85rem; outline: none;
+    }
+    .search-input:focus { border-color: var(--primary-purple); }
+
+    select.filter-select {
+        padding: 10px 12px; border-radius: 10px; border: 1px solid var(--card-border);
+        background: var(--input-bg); color: var(--text-main); font-size: 0.8rem; outline: none; cursor: pointer;
+    }
+
+    .btn-primary {
+        display: flex; align-items: center; gap: 7px; padding: 10px 16px; border-radius: 10px;
+        background: linear-gradient(135deg, var(--btn-grad-start), var(--btn-grad-end));
+        color: #fff; font-weight: 600; font-size: 0.82rem; border: none; cursor: pointer;
+        box-shadow: 0 4px 15px var(--btn-shadow); white-space: nowrap;
+    }
+    .btn-primary:hover { filter: brightness(1.1); }
+
+    .btn-secondary {
+        display: flex; align-items: center; gap: 7px; padding: 10px 14px; border-radius: 10px;
+        background: var(--icon-bg); color: var(--text-main); font-weight: 600; font-size: 0.8rem;
+        border: 1px solid var(--card-border); cursor: pointer; white-space: nowrap;
+    }
+    .btn-secondary:hover { border-color: var(--primary-purple); }
+
+    /* STATS */
+    .stats-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 1.1rem; }
+    .stat-card {
+        flex: 1; min-width: 130px; background: var(--card-bg); border: 1px solid var(--card-border);
+        border-radius: 14px; padding: 12px 16px; backdrop-filter: blur(20px);
+    }
+    .stat-card .num { font-size: 1.35rem; font-weight: 700; }
+    .stat-card .lbl { font-size: 0.72rem; color: var(--text-muted); font-weight: 600; }
+
+    /* TABLE */
+    .table-wrap {
+        background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 16px;
+        overflow: hidden; backdrop-filter: blur(20px); box-shadow: var(--card-shadow);
+    }
+    table { width: 100%; border-collapse: collapse; }
+    thead th {
+        text-align: left; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.5px;
+        color: var(--text-muted); padding: 12px 14px; border-bottom: 1px solid var(--card-border);
+        white-space: nowrap;
+    }
+    tbody td { padding: 11px 14px; font-size: 0.82rem; border-bottom: 1px solid var(--card-border); vertical-align: middle; }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:hover { background: var(--row-hover); }
+    tbody tr.row-inactive { opacity: 0.55; }
+
+    .nik-cell { font-weight: 700; font-family: monospace; letter-spacing: 0.5px; }
+    .nama-cell { font-weight: 600; }
+
+    .badge {
+        display: inline-flex; align-items: center; gap: 4px; font-size: 0.68rem; font-weight: 700;
+        padding: 3px 9px; border-radius: 20px; white-space: nowrap;
+    }
+    .badge-on { background: var(--badge-bg); color: var(--badge-text); border: 1px solid var(--badge-border); }
+    .badge-off { background: var(--badge-bg-off); color: var(--badge-text-off); border: 1px solid var(--badge-border-off); }
+    .badge-admin { background: var(--badge-bg-admin); color: var(--badge-text-admin); border: 1px solid var(--badge-border-admin); }
+
+    .row-actions { display: flex; gap: 6px; }
+    .icon-btn {
+        width: 30px; height: 30px; border-radius: 8px; border: 1px solid var(--card-border);
+        background: var(--icon-bg); color: var(--text-main); cursor: pointer; font-size: 0.78rem;
+        display: flex; align-items: center; justify-content: center;
+    }
+    .icon-btn:hover { transform: translateY(-1px); }
+    .icon-btn.edit:hover { background: #3b82f6; color: #fff; border-color: #3b82f6; }
+    .icon-btn.toggle:hover { background: #f59e0b; color: #fff; border-color: #f59e0b; }
+    .icon-btn.delete:hover { background: #ef4444; color: #fff; border-color: #ef4444; }
+
+    .empty-state { text-align: center; padding: 2.5rem 1rem; color: var(--text-muted); }
+    .empty-state i { font-size: 1.8rem; margin-bottom: 8px; display: block; }
+
+    /* MODAL */
+    .modal-overlay {
+        position: fixed; inset: 0; background: rgba(0,0,0,0.55); backdrop-filter: blur(4px);
+        display: none; align-items: center; justify-content: center; z-index: 5000; padding: 1rem;
+    }
+    .modal-overlay.visible { display: flex; }
+    .modal-card {
+        background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 20px;
+        padding: 1.6rem; width: 100%; max-width: 440px; box-shadow: var(--card-shadow);
+        backdrop-filter: blur(25px); max-height: 90vh; overflow-y: auto;
+    }
+    .modal-card h3 { font-size: 1.05rem; margin-bottom: 4px; }
+    .modal-card .modal-sub { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 1.1rem; }
+
+    .field { margin-bottom: 12px; }
+    .field label { display: block; font-size: 0.75rem; font-weight: 600; color: var(--text-muted); margin-bottom: 5px; }
+    .field input[type="text"], .field select {
+        width: 100%; padding: 10px 12px; border-radius: 10px; border: 1px solid var(--card-border);
+        background: var(--input-bg); color: var(--text-main); font-size: 0.85rem; outline: none;
+    }
+    .field input:focus, .field select:focus { border-color: var(--primary-purple); }
+    .field-error { color: var(--error-color); font-size: 0.72rem; margin-top: 4px; display: none; }
+
+    .modal-actions { display: flex; gap: 10px; margin-top: 1.2rem; }
+    .modal-actions .btn-primary, .modal-actions .btn-secondary { flex: 1; justify-content: center; }
+
+    .confirm-icon { width: 52px; height: 52px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 10px; }
+    .confirm-icon.danger { background: var(--error-bg); color: var(--error-color); }
+    .confirm-icon.warn { background: rgba(245,158,11,0.12); color: #f59e0b; }
+
+    /* TOAST */
+    #toast {
+        position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(20px);
+        background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-main);
+        padding: 11px 20px; border-radius: 12px; font-size: 0.82rem; font-weight: 600;
+        box-shadow: var(--card-shadow); backdrop-filter: blur(20px); z-index: 6000;
+        opacity: 0; pointer-events: none; transition: all 0.3s ease; max-width: 90vw; text-align: center;
+    }
+    #toast.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
+    #toast i { margin-right: 6px; }
+    #toast.success i { color: #4ade80; }
+    #toast.error i { color: var(--error-color); }
+
+    .note-banner {
+        display: flex; gap: 10px; align-items: flex-start; background: rgba(245,158,11,0.1);
+        border: 1px solid rgba(245,158,11,0.25); color: var(--text-main); padding: 12px 14px;
+        border-radius: 12px; font-size: 0.76rem; margin-bottom: 1.1rem; line-height: 1.5;
+    }
+    .note-banner i { color: #f59e0b; margin-top: 2px; }
+    .note-banner b { color: #f59e0b; }
+
+    @media (max-width: 768px) {
+        .app-container { padding: 0.85rem; }
+        .table-wrap { overflow-x: auto; }
+        table { min-width: 720px; }
+        .toolbar { flex-direction: column; align-items: stretch; }
+    }
+</style>
+</head>
+<body>
+
+<div id="toast"></div>
+
+<!-- LOADING -->
+<div id="loading-screen" class="center-screen">
+    <i class="fas fa-circle-notch fa-spin" style="color: var(--primary-purple);"></i>
+    <p>Memuat data...</p>
+</div>
+
+<!-- ACCESS DENIED -->
+<div id="denied-screen" class="center-screen" style="display:none;">
+    <i class="fas fa-lock"></i>
+    <h2 id="denied-title">Akses Ditolak</h2>
+    <p id="denied-text">Halaman ini hanya bisa diakses oleh admin.</p>
+    <a href="index.html" class="btn-primary" style="text-decoration:none;"><i class="fas fa-arrow-left"></i> Kembali ke Portal</a>
+</div>
+
+<!-- MAIN APP -->
+<div class="app-container" id="app-container" style="display:none;">
+
+    <header>
+        <div class="brand">
+            <a href="index.html" class="back-btn" title="Kembali"><i class="fas fa-arrow-left"></i></a>
+            <div class="brand-text">
+                <h1>Manajemen User</h1>
+                <p>Region Sumatera Business Portal</p>
+            </div>
+        </div>
+        <div class="header-actions">
+            <button id="theme-btn" class="action-btn" title="Toggle Theme"><i class="fas fa-sun"></i></button>
+        </div>
+    </header>
+
+    <div class="note-banner">
+        <i class="fas fa-circle-info"></i>
+        <div>
+            <b>Catatan penyimpanan:</b> Perubahan (tambah/edit/hapus/nonaktifkan) disimpan di penyimpanan lokal browser ini. Agar perubahan berlaku permanen untuk semua orang, gunakan tombol <b>"Unduh JSON"</b> dan ganti file <code>user_list.json</code> di server dengan file hasil unduhan.
+        </div>
+    </div>
+
+    <div class="stats-row">
+        <div class="stat-card"><div class="num" id="stat-total">0</div><div class="lbl">TOTAL USER</div></div>
+        <div class="stat-card"><div class="num" id="stat-active">0</div><div class="lbl">AKTIF</div></div>
+        <div class="stat-card"><div class="num" id="stat-inactive">0</div><div class="lbl">NONAKTIF</div></div>
+        <div class="stat-card"><div class="num" id="stat-admin">0</div><div class="lbl">ADMIN</div></div>
+    </div>
+
+    <div class="toolbar">
+        <div class="search-wrap">
+            <i class="fas fa-search"></i>
+            <input type="text" id="search-input" class="search-input" placeholder="Cari NIK, nama, posisi, atau lokasi...">
+        </div>
+        <select id="filter-status" class="filter-select">
+            <option value="all">Semua Status</option>
+            <option value="aktif">Aktif</option>
+            <option value="nonaktif">Nonaktif</option>
+        </select>
+        <select id="filter-admin" class="filter-select">
+            <option value="all">Semua Role</option>
+            <option value="admin">Admin</option>
+            <option value="user">User Biasa</option>
+        </select>
+        <button class="btn-secondary" id="export-btn"><i class="fas fa-download"></i> Unduh JSON</button>
+        <button class="btn-secondary" id="reset-btn"><i class="fas fa-rotate-left"></i> Reset Data</button>
+        <button class="btn-primary" id="add-btn"><i class="fas fa-plus"></i> Tambah User</button>
+    </div>
+
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>NIK</th>
+                    <th>Nama</th>
+                    <th>Posisi</th>
+                    <th>Lokasi</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody id="table-body"></tbody>
+        </table>
+        <div class="empty-state" id="empty-state" style="display:none;">
+            <i class="fas fa-user-slash"></i>
+            Tidak ada user yang cocok dengan pencarian/filter.
+        </div>
+    </div>
+</div>
+
+<!-- MODAL: ADD/EDIT USER -->
+<div class="modal-overlay" id="user-modal">
+    <div class="modal-card">
+        <h3 id="modal-title">Tambah User Baru</h3>
+        <p class="modal-sub" id="modal-sub">Lengkapi data user di bawah ini.</p>
+        <form id="user-form">
+            <input type="hidden" id="form-original-nik">
+            <div class="field">
+                <label for="f-nik">NIK</label>
+                <input type="text" id="f-nik" inputmode="numeric" placeholder="Contoh: 20120936" required>
+                <div class="field-error" id="err-nik">NIK wajib diisi dan harus unik.</div>
+            </div>
+            <div class="field">
+                <label for="f-nama">Nama Lengkap</label>
+                <input type="text" id="f-nama" placeholder="Contoh: Rifky Indrawan" required>
+                <div class="field-error" id="err-nama">Nama wajib diisi.</div>
+            </div>
+            <div class="field">
+                <label for="f-posisi">Posisi</label>
+                <input type="text" id="f-posisi" placeholder="Contoh: RBPM" required>
+                <div class="field-error" id="err-posisi">Posisi wajib diisi.</div>
+            </div>
+            <div class="field">
+                <label for="f-lokasi">Lokasi</label>
+                <input type="text" id="f-lokasi" placeholder="Contoh: REGION" required>
+                <div class="field-error" id="err-lokasi">Lokasi wajib diisi.</div>
+            </div>
+            <div class="field">
+                <label for="f-admin">Role</label>
+                <select id="f-admin">
+                    <option value="FALSE">User Biasa</option>
+                    <option value="TRUE">Admin</option>
+                </select>
+            </div>
+            <div class="field">
+                <label for="f-status">Status</label>
+                <select id="f-status">
+                    <option value="AKTIF">Aktif</option>
+                    <option value="NONAKTIF">Nonaktif</option>
+                </select>
+            </div>
+            <div class="modal-actions">
+                <button type="button" class="btn-secondary" id="modal-cancel">Batal</button>
+                <button type="submit" class="btn-primary" id="modal-save"><i class="fas fa-check"></i> Simpan</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- MODAL: CONFIRM (delete / toggle) -->
+<div class="modal-overlay" id="confirm-modal">
+    <div class="modal-card">
+        <div class="confirm-icon" id="confirm-icon"><i class="fas fa-triangle-exclamation"></i></div>
+        <h3 id="confirm-title">Konfirmasi</h3>
+        <p class="modal-sub" id="confirm-text">Apakah Anda yakin?</p>
+        <div class="modal-actions">
+            <button type="button" class="btn-secondary" id="confirm-cancel">Batal</button>
+            <button type="button" class="btn-primary" id="confirm-ok">Ya, Lanjutkan</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const STORAGE_KEY = 'bmi_user_list_v1';
+    let users = [];
+    let currentUser = null;
+    let pendingAction = null; // { type: 'delete'|'toggle', nik }
+
+    function normalizeUser(u) {
+        return {
+            nik: String(u.nik || '').trim(),
+            nama: u.nama || '',
+            posisi: u.posisi || '',
+            lokasi: u.lokasi || '',
+            admin: String(u.admin || 'FALSE').toUpperCase() === 'TRUE' ? 'TRUE' : 'FALSE',
+            status: String(u.status || 'AKTIF').toUpperCase() === 'NONAKTIF' ? 'NONAKTIF' : 'AKTIF'
+        };
+    }
+
+    function loadFromStorage() {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+            try {
+                const parsed = JSON.parse(raw);
+                if (Array.isArray(parsed)) return parsed.map(normalizeUser);
+            } catch (e) { /* fall through to reseed */ }
+        }
+        return null;
+    }
+
+    function saveToStorage() {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
+    }
+
+    async function seedFromJsonFile() {
+        const res = await fetch('user_list.json', { cache: 'no-store' });
+        if (!res.ok) throw new Error('Gagal memuat user_list.json');
+        const data = await res.json();
+        const list = Array.isArray(data.user_list) ? data.user_list : [];
+        return list.map(normalizeUser);
+    }
+
+    function showToast(message, type = 'success') {
+        const toast = document.getElementById('toast');
+        toast.className = type;
+        toast.innerHTML = `<i class="fas ${type === 'success' ? 'fa-circle-check' : 'fa-circle-exclamation'}"></i>${message}`;
+        toast.classList.add('visible');
+        setTimeout(() => toast.classList.remove('visible'), 3000);
+    }
+
+    function showScreen(name) {
+        document.getElementById('loading-screen').style.display = name === 'loading' ? 'flex' : 'none';
+        document.getElementById('denied-screen').style.display = name === 'denied' ? 'flex' : 'none';
+        document.getElementById('app-container').style.display = name === 'app' ? 'flex' : 'none';
+    }
+
+    async function init() {
+        const nik = localStorage.getItem('saved_user_nik');
+        if (!nik) {
+            document.getElementById('denied-title').textContent = 'Belum Login';
+            document.getElementById('denied-text').textContent = 'Silakan login terlebih dahulu melalui halaman utama untuk mengakses fitur ini.';
+            showScreen('denied');
+            return;
+        }
+
+        try {
+            let stored = loadFromStorage();
+            if (!stored) {
+                stored = await seedFromJsonFile();
+                users = stored;
+                saveToStorage();
+            } else {
+                users = stored;
+            }
+        } catch (err) {
+            document.getElementById('denied-title').textContent = 'Gagal Memuat Data';
+            document.getElementById('denied-text').textContent = 'Tidak dapat memuat user_list.json. Hubungi administrator sistem.';
+            showScreen('denied');
+            return;
+        }
+
+        currentUser = users.find(u => u.nik === String(nik).trim());
+        if (!currentUser || currentUser.admin !== 'TRUE') {
+            document.getElementById('denied-title').textContent = 'Akses Ditolak';
+            document.getElementById('denied-text').textContent = 'Halaman Manajemen User hanya bisa diakses oleh admin.';
+            showScreen('denied');
+            return;
+        }
+
+        showScreen('app');
+        renderTable();
+    }
+
+    function getFilteredUsers() {
+        const q = document.getElementById('search-input').value.trim().toLowerCase();
+        const statusFilter = document.getElementById('filter-status').value;
+        const adminFilter = document.getElementById('filter-admin').value;
+
+        return users.filter(u => {
+            const matchQ = !q || [u.nik, u.nama, u.posisi, u.lokasi].join(' ').toLowerCase().includes(q);
+            const matchStatus = statusFilter === 'all' || (statusFilter === 'aktif' && u.status === 'AKTIF') || (statusFilter === 'nonaktif' && u.status === 'NONAKTIF');
+            const matchAdmin = adminFilter === 'all' || (adminFilter === 'admin' && u.admin === 'TRUE') || (adminFilter === 'user' && u.admin === 'FALSE');
+            return matchQ && matchStatus && matchAdmin;
+        });
+    }
+
+    function renderTable() {
+        const tbody = document.getElementById('table-body');
+        const list = getFilteredUsers();
+
+        document.getElementById('stat-total').textContent = users.length;
+        document.getElementById('stat-active').textContent = users.filter(u => u.status === 'AKTIF').length;
+        document.getElementById('stat-inactive').textContent = users.filter(u => u.status === 'NONAKTIF').length;
+        document.getElementById('stat-admin').textContent = users.filter(u => u.admin === 'TRUE').length;
+
+        tbody.innerHTML = '';
+        document.getElementById('empty-state').style.display = list.length ? 'none' : 'block';
+
+        list.forEach(u => {
+            const tr = document.createElement('tr');
+            if (u.status === 'NONAKTIF') tr.classList.add('row-inactive');
+            tr.innerHTML = `
+                <td class="nik-cell">${escapeHtml(u.nik)}</td>
+                <td class="nama-cell">${escapeHtml(u.nama)}</td>
+                <td>${escapeHtml(u.posisi)}</td>
+                <td>${escapeHtml(u.lokasi)}</td>
+                <td>${u.admin === 'TRUE' ? '<span class="badge badge-admin"><i class="fas fa-shield-halved"></i> Admin</span>' : '<span class="badge badge-off">User</span>'}</td>
+                <td>${u.status === 'AKTIF' ? '<span class="badge badge-on"><i class="fas fa-circle-check"></i> Aktif</span>' : '<span class="badge badge-off"><i class="fas fa-circle-minus"></i> Nonaktif</span>'}</td>
+                <td>
+                    <div class="row-actions">
+                        <button class="icon-btn edit" title="Edit" data-action="edit" data-nik="${escapeAttr(u.nik)}"><i class="fas fa-pen"></i></button>
+                        <button class="icon-btn toggle" title="${u.status === 'AKTIF' ? 'Nonaktifkan' : 'Aktifkan'}" data-action="toggle" data-nik="${escapeAttr(u.nik)}"><i class="fas ${u.status === 'AKTIF' ? 'fa-toggle-on' : 'fa-toggle-off'}"></i></button>
+                        <button class="icon-btn delete" title="Hapus" data-action="delete" data-nik="${escapeAttr(u.nik)}"><i class="fas fa-trash"></i></button>
+                    </div>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        });
+    }
+
+    function escapeHtml(str) {
+        return String(str).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    }
+    function escapeAttr(str) { return escapeHtml(str); }
+
+    // ---------- MODAL: ADD/EDIT ----------
+    const userModal = document.getElementById('user-modal');
+    const userForm = document.getElementById('user-form');
+
+    function openAddModal() {
+        document.getElementById('modal-title').textContent = 'Tambah User Baru';
+        document.getElementById('modal-sub').textContent = 'Isi data user baru yang akan ditambahkan.';
+        document.getElementById('form-original-nik').value = '';
+        document.getElementById('f-nik').value = '';
+        document.getElementById('f-nik').disabled = false;
+        document.getElementById('f-nama').value = '';
+        document.getElementById('f-posisi').value = '';
+        document.getElementById('f-lokasi').value = '';
+        document.getElementById('f-admin').value = 'FALSE';
+        document.getElementById('f-status').value = 'AKTIF';
+        clearFormErrors();
+        userModal.classList.add('visible');
+    }
+
+    function openEditModal(nik) {
+        const u = users.find(x => x.nik === nik);
+        if (!u) return;
+        document.getElementById('modal-title').textContent = 'Edit User';
+        document.getElementById('modal-sub').textContent = `Mengubah data untuk ${u.nama}.`;
+        document.getElementById('form-original-nik').value = u.nik;
+        document.getElementById('f-nik').value = u.nik;
+        document.getElementById('f-nik').disabled = true;
+        document.getElementById('f-nama').value = u.nama;
+        document.getElementById('f-posisi').value = u.posisi;
+        document.getElementById('f-lokasi').value = u.lokasi;
+        document.getElementById('f-admin').value = u.admin;
+        document.getElementById('f-status').value = u.status;
+        clearFormErrors();
+        userModal.classList.add('visible');
+    }
+
+    function closeUserModal() { userModal.classList.remove('visible'); }
+
+    function clearFormErrors() {
+        document.querySelectorAll('.field-error').forEach(el => el.style.display = 'none');
+    }
+
+    userForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        clearFormErrors();
+
+        const originalNik = document.getElementById('form-original-nik').value.trim();
+        const nik = document.getElementById('f-nik').value.trim();
+        const nama = document.getElementById('f-nama').value.trim();
+        const posisi = document.getElementById('f-posisi').value.trim();
+        const lokasi = document.getElementById('f-lokasi').value.trim();
+        const admin = document.getElementById('f-admin').value;
+        const status = document.getElementById('f-status').value;
+
+        let hasError = false;
+        if (!nik) { document.getElementById('err-nik').style.display = 'block'; hasError = true; }
+        if (!nama) { document.getElementById('err-nama').style.display = 'block'; hasError = true; }
+        if (!posisi) { document.getElementById('err-posisi').style.display = 'block'; hasError = true; }
+        if (!lokasi) { document.getElementById('err-lokasi').style.display = 'block'; hasError = true; }
+
+        const isEdit = !!originalNik;
+        const dupExists = users.some(u => u.nik === nik && u.nik !== originalNik);
+        if (!isEdit && users.some(u => u.nik === nik)) {
+            document.getElementById('err-nik').textContent = 'NIK sudah digunakan user lain.';
+            document.getElementById('err-nik').style.display = 'block';
+            hasError = true;
+        } else if (isEdit && dupExists) {
+            document.getElementById('err-nik').textContent = 'NIK sudah digunakan user lain.';
+            document.getElementById('err-nik').style.display = 'block';
+            hasError = true;
+        }
+
+        if (hasError) return;
+
+        const newUser = normalizeUser({ nik, nama, posisi, lokasi, admin, status });
+
+        if (isEdit) {
+            const idx = users.findIndex(u => u.nik === originalNik);
+            if (idx !== -1) users[idx] = newUser;
+            showToast('Data user berhasil diperbarui.', 'success');
+        } else {
+            users.push(newUser);
+            showToast('User baru berhasil ditambahkan.', 'success');
+        }
+
+        saveToStorage();
+        renderTable();
+        closeUserModal();
+    });
+
+    document.getElementById('add-btn').addEventListener('click', openAddModal);
+    document.getElementById('modal-cancel').addEventListener('click', closeUserModal);
+    userModal.addEventListener('click', (e) => { if (e.target === userModal) closeUserModal(); });
+
+    // ---------- MODAL: CONFIRM ----------
+    const confirmModal = document.getElementById('confirm-modal');
+
+    function openConfirm({ type, nik }) {
+        const u = users.find(x => x.nik === nik);
+        if (!u) return;
+        pendingAction = { type, nik };
+
+        const icon = document.getElementById('confirm-icon');
+        if (type === 'delete') {
+            icon.className = 'confirm-icon danger';
+            icon.innerHTML = '<i class="fas fa-trash"></i>';
+            document.getElementById('confirm-title').textContent = 'Hapus User';
+            document.getElementById('confirm-text').textContent = `Anda yakin ingin menghapus "${u.nama}" (NIK ${u.nik})? Tindakan ini tidak dapat dibatalkan.`;
+            document.getElementById('confirm-ok').textContent = 'Ya, Hapus';
+        } else {
+            const willActivate = u.status === 'NONAKTIF';
+            icon.className = 'confirm-icon warn';
+            icon.innerHTML = `<i class="fas ${willActivate ? 'fa-toggle-on' : 'fa-toggle-off'}"></i>`;
+            document.getElementById('confirm-title').textContent = willActivate ? 'Aktifkan User' : 'Nonaktifkan User';
+            document.getElementById('confirm-text').textContent = `Anda yakin ingin ${willActivate ? 'mengaktifkan' : 'menonaktifkan'} "${u.nama}" (NIK ${u.nik})?`;
+            document.getElementById('confirm-ok').textContent = 'Ya, Lanjutkan';
+        }
+        confirmModal.classList.add('visible');
+    }
+
+    function closeConfirm() { confirmModal.classList.remove('visible'); pendingAction = null; }
+
+    document.getElementById('confirm-cancel').addEventListener('click', closeConfirm);
+    confirmModal.addEventListener('click', (e) => { if (e.target === confirmModal) closeConfirm(); });
+
+    document.getElementById('confirm-ok').addEventListener('click', () => {
+        if (!pendingAction) return;
+        const { type, nik } = pendingAction;
+        const idx = users.findIndex(u => u.nik === nik);
+        if (idx === -1) { closeConfirm(); return; }
+
+        if (type === 'delete') {
+            const removedName = users[idx].nama;
+            users.splice(idx, 1);
+            showToast(`User "${removedName}" berhasil dihapus.`, 'success');
+        } else {
+            users[idx].status = users[idx].status === 'AKTIF' ? 'NONAKTIF' : 'AKTIF';
+            showToast(`Status "${users[idx].nama}" diubah menjadi ${users[idx].status === 'AKTIF' ? 'Aktif' : 'Nonaktif'}.`, 'success');
+        }
+
+        saveToStorage();
+        renderTable();
+        closeConfirm();
+    });
+
+    // ---------- TABLE ACTION DELEGATION ----------
+    document.getElementById('table-body').addEventListener('click', (e) => {
+        const btn = e.target.closest('button[data-action]');
+        if (!btn) return;
+        const action = btn.getAttribute('data-action');
+        const nik = btn.getAttribute('data-nik');
+        if (action === 'edit') openEditModal(nik);
+        else if (action === 'delete') openConfirm({ type: 'delete', nik });
+        else if (action === 'toggle') openConfirm({ type: 'toggle', nik });
+    });
+
+    // ---------- SEARCH & FILTER ----------
+    document.getElementById('search-input').addEventListener('input', renderTable);
+    document.getElementById('filter-status').addEventListener('change', renderTable);
+    document.getElementById('filter-admin').addEventListener('change', renderTable);
+
+    // ---------- EXPORT ----------
+    document.getElementById('export-btn').addEventListener('click', () => {
+        const payload = { user_list: users };
+        const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'user_list.json';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast('File user_list.json berhasil diunduh.', 'success');
+    });
+
+    // ---------- RESET ----------
+    document.getElementById('reset-btn').addEventListener('click', async () => {
+        if (!confirm('Reset akan menghapus semua perubahan lokal dan memuat ulang data asli dari user_list.json. Lanjutkan?')) return;
+        try {
+            users = await seedFromJsonFile();
+            saveToStorage();
+            renderTable();
+            showToast('Data berhasil direset ke data awal.', 'success');
+        } catch (err) {
+            showToast('Gagal mereset data.', 'error');
+        }
+    });
+
+    // ---------- THEME ----------
+    const themeBtn = document.getElementById('theme-btn');
+    const themeIcon = themeBtn.querySelector('i');
+    const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+    if (!prefersDarkScheme.matches) {
+        document.body.classList.add('light-mode');
+        themeIcon.classList.remove('fa-sun');
+        themeIcon.classList.add('fa-moon');
+    }
+    themeBtn.addEventListener('click', () => {
+        document.body.classList.toggle('light-mode');
+        const isLight = document.body.classList.contains('light-mode');
+        themeIcon.classList.toggle('fa-sun', !isLight);
+        themeIcon.classList.toggle('fa-moon', isLight);
+    });
+
+    init();
+</script>
+</body>
+</html>

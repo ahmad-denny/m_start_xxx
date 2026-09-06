@@ -665,7 +665,22 @@
             padding: 5px 12px 5px 6px;
             backdrop-filter: blur(10px);
             min-width: 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
+
+        .user-chip:hover {
+            transform: scale(1.03);
+            border-color: rgba(155, 93, 229, 0.5);
+        }
+
+        @keyframes chipShake {
+            10%, 90% { transform: translateX(-2px); }
+            20%, 80% { transform: translateX(3px); }
+            30%, 50%, 70% { transform: translateX(-5px); }
+            40%, 60% { transform: translateX(5px); }
+        }
+        .user-chip.shake { animation: chipShake 0.4s; }
 
         .user-chip .avatar {
             width: 30px;
@@ -1083,6 +1098,7 @@
 
         let userList = [];
         let userListReady = false;
+        let activeUser = null;
 
         async function loadUserList() {
             try {
@@ -1113,6 +1129,7 @@
 
         // Fungsi untuk memproses login UI
         function executeLogin(user, showToast = true) {
+            activeUser = user;
             loginOverlay.classList.add('login-success');
             setTimeout(() => {
                 loginOverlay.style.display = 'none';
@@ -1192,6 +1209,7 @@
         logoutBtn.addEventListener('click', function () {
             // Hapus sesi tersimpan di localStorage
             localStorage.removeItem('saved_user_nik');
+            activeUser = null;
 
             // Reset tampilan UI
             document.getElementById('user-chip').style.display = 'none';
@@ -1205,6 +1223,18 @@
             loginOverlay.classList.remove('login-success');
             
             setTimeout(() => nikInput.focus(), 100);
+        });
+
+        // KLIK NAMA USER: buka halaman manajemen user (khusus admin)
+        const userChip = document.getElementById('user-chip');
+        userChip.addEventListener('click', () => {
+            if (activeUser && String(activeUser.admin).toUpperCase() === 'TRUE') {
+                window.location.href = 'user-management.html';
+            } else {
+                // Bukan admin: beri feedback visual, tidak menampilkan halaman
+                userChip.classList.add('shake');
+                setTimeout(() => userChip.classList.remove('shake'), 400);
+            }
         });
 
         function showWelcomeToast(user) {
