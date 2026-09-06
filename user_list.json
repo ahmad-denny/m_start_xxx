@@ -4,655 +4,764 @@
       "nik": "20120936",
       "nama": "Rifky Indrawan",
       "posisi": "EBPS",
-      "lokasi": "MEDAN BALAIKOTA"
+      "lokasi": "REGION",
+      "admin": "FALSE"
     },
     {
       "nik": "20160352",
       "nama": "Ahmad Afandi",
       "posisi": "HCBP Region",
-      "lokasi": "MEDAN BALAIKOTA"
+      "lokasi": "REGION",
+      "admin": "FALSE"
     },
     {
       "nik": "20180570",
       "nama": "Ahmad Denny",
       "posisi": "RBPM",
-      "lokasi": "MEDAN BALAIKOTA"
+      "lokasi": "REGION",
+      "admin": "TRUE"
     },
     {
       "nik": "20110257",
       "nama": "Sopian",
       "posisi": "RCFM",
-      "lokasi": "MEDAN BALAIKOTA"
+      "lokasi": "REGION",
+      "admin": "FALSE"
     },
     {
       "nik": "20121332",
       "nama": "Firza Aria Permana",
       "posisi": "RCMS",
-      "lokasi": "MEDAN BALAIKOTA"
+      "lokasi": "REGION",
+      "admin": "FALSE"
     },
     {
       "nik": "20220016",
       "nama": "Irfan Budiman Barus",
       "posisi": "Region SME",
-      "lokasi": "MEDAN BALAIKOTA"
+      "lokasi": "REGION",
+      "admin": "FALSE"
     },
     {
       "nik": "20140578",
       "nama": "Aldy Yusra Rangkuti",
       "posisi": "RFTM",
-      "lokasi": "MEDAN BALAIKOTA"
+      "lokasi": "REGION",
+      "admin": "FALSE"
     },
     {
       "nik": "20000031",
       "nama": "Kadar Budiman",
       "posisi": "RH",
-      "lokasi": "MEDAN BALAIKOTA"
+      "lokasi": "REGION",
+      "admin": "FALSE"
     },
     {
       "nik": "20141326",
       "nama": "Alfian Alwi",
       "posisi": "RSFS",
-      "lokasi": "MEDAN BALAIKOTA"
+      "lokasi": "REGION",
+      "admin": "FALSE"
     },
     {
       "nik": "20110371",
       "nama": "Meriam Zanaria",
       "posisi": "RSS",
-      "lokasi": "MEDAN BALAIKOTA"
+      "lokasi": "REGION",
+      "admin": "FALSE"
     },
     {
       "nik": "20110434",
       "nama": "Riza Stiadi",
       "posisi": "RUFS",
-      "lokasi": "MEDAN BALAIKOTA"
+      "lokasi": "REGION",
+      "admin": "FALSE"
     },
     {
       "nik": "20160360",
       "nama": "Candra Kirana",
       "posisi": "RWPM",
-      "lokasi": "MEDAN BALAIKOTA"
+      "lokasi": "REGION",
+      "admin": "FALSE"
     },
     {
       "nik": "20080069",
       "nama": "Fitra Nirwan",
       "posisi": "SrBM-C",
-      "lokasi": "MEDAN BALAIKOTA"
+      "lokasi": "MEDAN BALAIKOTA",
+      "admin": "FALSE"
     },
     {
       "nik": "20010018",
       "nama": "Meidya Sari",
       "posisi": "SRBOSM",
-      "lokasi": "MEDAN BALAIKOTA"
+      "lokasi": "MEDAN BALAIKOTA",
+      "admin": "FALSE"
     },
     {
       "nik": "20131410",
       "nama": "Ferry Yonanda Yusfik",
       "posisi": "WMS",
-      "lokasi": "MEDAN BALAIKOTA"
+      "lokasi": "REGION",
+      "admin": "FALSE"
     },
     {
       "nik": "20000009",
       "nama": "Dewi Widiyawati",
       "posisi": "BM-D",
-      "lokasi": "KCP SUKARAMAI"
+      "lokasi": "KCP SUKARAMAI",
+      "admin": "FALSE"
     },
     {
       "nik": "20110292",
       "nama": "Poppy Sohita Nasution",
       "posisi": "BOSM",
-      "lokasi": "KCP SUKARAMAI"
+      "lokasi": "KCP SUKARAMAI",
+      "admin": "FALSE"
     },
     {
       "nik": "20120938",
       "nama": "Muhammad Rajab Lubis",
       "posisi": "BM-NC",
-      "lokasi": "KCP SERDANG"
+      "lokasi": "KCP SERDANG",
+      "admin": "FALSE"
     },
     {
       "nik": "20110845",
       "nama": "Novita Sari",
       "posisi": "BOSM",
-      "lokasi": "KCP SERDANG"
+      "lokasi": "KCP SERDANG",
+      "admin": "FALSE"
     },
     {
       "nik": "20050040",
       "nama": "Efrida Yanti Siregar",
       "posisi": "BM-NC",
-      "lokasi": "PADANG SIDEMPUAN"
+      "lokasi": "PADANG SIDEMPUAN",
+      "admin": "FALSE"
     },
     {
       "nik": "20130727",
       "nama": "Af Wahyudi",
       "posisi": "BOSM",
-      "lokasi": "PADANG SIDEMPUAN"
+      "lokasi": "PADANG SIDEMPUAN",
+      "admin": "FALSE"
     },
     {
       "nik": "20050064",
       "nama": "Rusdi",
       "posisi": "BM-NC",
-      "lokasi": "KCP PANYABUNGAN"
+      "lokasi": "KCP PANYABUNGAN",
+      "admin": "FALSE"
     },
     {
       "nik": "20090299",
       "nama": "Fatimah Suhro",
       "posisi": "BOSM",
-      "lokasi": "KCP PANYABUNGAN"
+      "lokasi": "KCP PANYABUNGAN",
+      "admin": "FALSE"
     },
     {
       "nik": "20000007",
       "nama": "Rusydi Syafri",
       "posisi": "ROSM",
-      "lokasi": "PEKANBARU"
+      "lokasi": "REGION",
+      "admin": "FALSE"
     },
     {
       "nik": "20090220",
       "nama": "Danang Rokhmad Sulendra",
       "posisi": "SrBM-C",
-      "lokasi": "PEKANBARU"
+      "lokasi": "PEKANBARU",
+      "admin": "FALSE"
     },
     {
       "nik": "20130797",
       "nama": "Tomi Agusta Putra",
       "posisi": "SRBOSM",
-      "lokasi": "PEKANBARU"
+      "lokasi": "PEKANBARU",
+      "admin": "FALSE"
     },
     {
       "nik": "20080008",
       "nama": "Sefri Hartoni",
       "posisi": "BM-NC",
-      "lokasi": "KCP KAMPAR"
+      "lokasi": "KCP KAMPAR",
+      "admin": "FALSE"
     },
     {
       "nik": "20110626",
       "nama": "Micel Istiqrar",
       "posisi": "BOSM",
-      "lokasi": "KCP KAMPAR"
+      "lokasi": "KCP KAMPAR",
+      "admin": "FALSE"
     },
     {
       "nik": "20140734",
       "nama": "Additya Dian Eko Putra",
       "posisi": "BM-D",
-      "lokasi": "BATAM"
+      "lokasi": "BATAM",
+      "admin": "FALSE"
     },
     {
       "nik": "20120200",
       "nama": "Juhendra",
       "posisi": "BOSM",
-      "lokasi": "BATAM"
+      "lokasi": "BATAM",
+      "admin": "FALSE"
     },
     {
       "nik": "20050147",
       "nama": "Wondo Widokdo",
       "posisi": "BM-D",
-      "lokasi": "TANJUNG PINANG"
+      "lokasi": "TANJUNG PINANG",
+      "admin": "FALSE"
     },
     {
       "nik": "20010030",
       "nama": "Fadlin Arief",
       "posisi": "BOSM",
-      "lokasi": "TANJUNG PINANG"
+      "lokasi": "TANJUNG PINANG",
+      "admin": "FALSE"
     },
     {
       "nik": "20010019",
       "nama": "Muhammad Harmein",
       "posisi": "SrBM-D",
-      "lokasi": "BANDA ACEH"
+      "lokasi": "BANDA ACEH",
+      "admin": "FALSE"
     },
     {
       "nik": "20060034",
       "nama": "Ratna Dewi",
       "posisi": "SRBOSM",
-      "lokasi": "BANDA ACEH"
+      "lokasi": "BANDA ACEH",
+      "admin": "FALSE"
     },
     {
       "nik": "20100323",
       "nama": "Affan Syu`aidi",
       "posisi": "BM-NC",
-      "lokasi": "LANGSA"
+      "lokasi": "LANGSA",
+      "admin": "FALSE"
     },
     {
       "nik": "20040001",
       "nama": "Didi Mariadi",
       "posisi": "BOSM",
-      "lokasi": "LANGSA"
+      "lokasi": "LANGSA",
+      "admin": "FALSE"
     },
     {
       "nik": "20100186",
       "nama": "M Reza Anrycco",
       "posisi": "BM-D",
-      "lokasi": "KCP LHOKSEUMAWE"
+      "lokasi": "KCP LHOKSEUMAWE",
+      "admin": "FALSE"
     },
     {
       "nik": "20120088",
       "nama": "Muammar Rizky Aditya Saputra",
       "posisi": "BOSM",
-      "lokasi": "KCP LHOKSEUMAWE"
+      "lokasi": "KCP LHOKSEUMAWE",
+      "admin": "FALSE"
     },
     {
       "nik": "20110230",
       "nama": "Mhd Taufik",
       "posisi": "SrBM-C",
-      "lokasi": "LAMPUNG"
+      "lokasi": "LAMPUNG",
+      "admin": "FALSE"
     },
     {
       "nik": "20140006",
       "nama": "Ahmad Komardi",
       "posisi": "SRBOSM",
-      "lokasi": "LAMPUNG"
+      "lokasi": "LAMPUNG",
+      "admin": "FALSE"
     },
     {
       "nik": "20110410",
       "nama": "Sigit Adi Putra",
       "posisi": "BM-NC",
-      "lokasi": "KCP BANDAR JAYA"
+      "lokasi": "KCP BANDAR JAYA",
+      "admin": "FALSE"
     },
     {
       "nik": "20120164",
       "nama": "Nia Noviana",
       "posisi": "BOSM",
-      "lokasi": "KCP BANDAR JAYA"
+      "lokasi": "KCP BANDAR JAYA",
+      "admin": "FALSE"
     },
     {
       "nik": "20140804",
       "nama": "M.N Fajrie",
       "posisi": "BM-D",
-      "lokasi": "KCP METRO LAMPUNG"
+      "lokasi": "KCP METRO LAMPUNG",
+      "admin": "FALSE"
     },
     {
       "nik": "20120369",
       "nama": "Meri Mayangsari",
       "posisi": "BOSM",
-      "lokasi": "KCP METRO LAMPUNG"
+      "lokasi": "KCP METRO LAMPUNG",
+      "admin": "FALSE"
     },
     {
       "nik": "20121041",
       "nama": "Nindya Qurrata `Aini",
       "posisi": "BM-NC",
-      "lokasi": "KCP ZA PAGAR ALAM LAMPUNG"
+      "lokasi": "KCP ZA PAGAR ALAM LAMPUNG",
+      "admin": "FALSE"
     },
     {
       "nik": "20080084",
       "nama": "Hana Yunita",
       "posisi": "BOSM",
-      "lokasi": "KCP ZA PAGAR ALAM LAMPUNG"
+      "lokasi": "KCP ZA PAGAR ALAM LAMPUNG",
+      "admin": "FALSE"
     },
     {
       "nik": "20190016",
       "nama": "Januar Suwansyah",
       "posisi": "BM-NC",
-      "lokasi": "KCP KOTABUMI LAMPUNG"
+      "lokasi": "KCP KOTABUMI LAMPUNG",
+      "admin": "FALSE"
     },
     {
       "nik": "20120162",
       "nama": "Halimah",
       "posisi": "BOSM",
-      "lokasi": "KCP KOTABUMI LAMPUNG"
+      "lokasi": "KCP KOTABUMI LAMPUNG",
+      "admin": "FALSE"
     },
     {
       "nik": "20120627",
       "nama": "Taufik Apriansyah",
       "posisi": "RFS",
-      "lokasi": "PALEMBANG"
+      "lokasi": "PALEMBANG",
+      "admin": "FALSE"
     },
     {
       "nik": "20060123",
       "nama": "Rifyal Fajri",
       "posisi": "SrBM-D",
-      "lokasi": "PALEMBANG"
+      "lokasi": "PALEMBANG",
+      "admin": "FALSE"
     },
     {
       "nik": "20110493",
       "nama": "Muhammad Andi Kurniawan",
       "posisi": "SRBOSM",
-      "lokasi": "PALEMBANG"
+      "lokasi": "PALEMBANG",
+      "admin": "FALSE"
     },
     {
       "nik": "20120025",
       "nama": "Herda Fitriani",
       "posisi": "BOSM",
-      "lokasi": "KCP PLAJU"
+      "lokasi": "KCP PLAJU",
+      "admin": "FALSE"
     },
     {
       "nik": "20140871",
       "nama": "Rinaldi",
       "posisi": "BM-NC",
-      "lokasi": "KCP BATURAJA"
+      "lokasi": "KCP BATURAJA",
+      "admin": "FALSE"
     },
     {
       "nik": "20110594",
       "nama": "Robi Syaputra",
       "posisi": "BOSM",
-      "lokasi": "KCP BATURAJA"
+      "lokasi": "KCP BATURAJA",
+      "admin": "FALSE"
     },
     {
       "nik": "20190041",
       "nama": "Melda Nirmala",
       "posisi": "BM-NC",
-      "lokasi": "KCP ENIM"
+      "lokasi": "KCP ENIM",
+      "admin": "FALSE"
     },
     {
       "nik": "20110585",
       "nama": "Satria",
       "posisi": "BOSM",
-      "lokasi": "KCP ENIM"
+      "lokasi": "KCP ENIM",
+      "admin": "FALSE"
     },
     {
       "nik": "20190088",
       "nama": "Abdul Kadir Jailani",
       "posisi": "SrBM-C",
-      "lokasi": "PANGKAL PINANG"
+      "lokasi": "PANGKAL PINANG",
+      "admin": "FALSE"
     },
     {
       "nik": "20100147",
       "nama": "Dicky Nugraha",
       "posisi": "SRBOSM",
-      "lokasi": "PANGKAL PINANG"
+      "lokasi": "PANGKAL PINANG",
+      "admin": "FALSE"
     },
     {
       "nik": "20190195",
       "nama": "Bayu Anggara",
       "posisi": "BM-NC",
-      "lokasi": "KCP TANJUNG PANDAN"
+      "lokasi": "KCP TANJUNG PANDAN",
+      "admin": "FALSE"
     },
     {
       "nik": "20140875",
       "nama": "Yusrizal A Rachman",
       "posisi": "BOSM",
-      "lokasi": "KCP TANJUNG PANDAN"
+      "lokasi": "KCP TANJUNG PANDAN",
+      "admin": "FALSE"
     },
     {
       "nik": "20121353",
       "nama": "Yuanika Dwi Utami",
       "posisi": "BM-D",
-      "lokasi": "KCP SUNGAILIAT"
+      "lokasi": "KCP SUNGAILIAT",
+      "admin": "FALSE"
     },
     {
       "nik": "20100049",
       "nama": "Wahyuni Paraliba",
       "posisi": "BOSM",
-      "lokasi": "KCP SUNGAILIAT"
+      "lokasi": "KCP SUNGAILIAT",
+      "admin": "FALSE"
     },
     {
       "nik": "20080257",
       "nama": "Eri Kurniawan",
       "posisi": "BM-NC",
-      "lokasi": "KCP KOBA"
+      "lokasi": "KCP KOBA",
+      "admin": "FALSE"
     },
     {
       "nik": "20220167",
       "nama": "Morin Oktavia",
       "posisi": "BOSM",
-      "lokasi": "KCP KOBA"
+      "lokasi": "KCP KOBA",
+      "admin": "FALSE"
     },
     {
       "nik": "20050062",
       "nama": "Muhammad Amin",
       "posisi": "SrBM-D",
-      "lokasi": "PADANG"
+      "lokasi": "PADANG",
+      "admin": "FALSE"
     },
     {
       "nik": "20040095",
       "nama": "Chairul Adha",
       "posisi": "SRBOSM",
-      "lokasi": "PADANG"
+      "lokasi": "PADANG",
+      "admin": "FALSE"
     },
     {
       "nik": "20030013",
       "nama": "Lusiana",
       "posisi": "BM-D",
-      "lokasi": "KCP BUKITTINGGI"
+      "lokasi": "KCP BUKITTINGGI",
+      "admin": "FALSE"
     },
     {
       "nik": "20100420",
       "nama": "Alinofia",
       "posisi": "BOSM",
-      "lokasi": "KCP BUKITTINGGI"
+      "lokasi": "KCP BUKITTINGGI",
+      "admin": "FALSE"
     },
     {
       "nik": "20050012",
       "nama": "Syuhardiman",
       "posisi": "BM-D",
-      "lokasi": "KCP PAYAKUMBUH"
+      "lokasi": "KCP PAYAKUMBUH",
+      "admin": "FALSE"
     },
     {
       "nik": "20070086",
       "nama": "Deno Rahmaniawan",
       "posisi": "BOSM",
-      "lokasi": "KCP PAYAKUMBUH"
+      "lokasi": "KCP PAYAKUMBUH",
+      "admin": "FALSE"
     },
     {
       "nik": "20131341",
       "nama": "Heyu Willy Herisna",
       "posisi": "BM-NC",
-      "lokasi": "KCP SOLOK"
+      "lokasi": "KCP SOLOK",
+      "admin": "FALSE"
     },
     {
       "nik": "20110734",
       "nama": "Mardi Sugianto",
       "posisi": "BOSM",
-      "lokasi": "KCP SOLOK"
+      "lokasi": "KCP SOLOK",
+      "admin": "FALSE"
     },
     {
       "nik": "20160417",
       "nama": "Januar Fadlillah",
       "posisi": "SrBM-D",
-      "lokasi": "BENGKULU"
+      "lokasi": "BENGKULU",
+      "admin": "FALSE"
     },
     {
       "nik": "20110089",
       "nama": "Iqbal Ramadhan",
       "posisi": "SRBOSM",
-      "lokasi": "BENGKULU"
+      "lokasi": "BENGKULU",
+      "admin": "FALSE"
     },
     {
       "nik": "20110148",
       "nama": "Maharani",
       "posisi": "BM-D",
-      "lokasi": "KCP CURUP"
+      "lokasi": "KCP CURUP",
+      "admin": "FALSE"
     },
     {
       "nik": "20120380",
       "nama": "Indah Eka Yulida",
       "posisi": "BOSM",
-      "lokasi": "KCP CURUP"
+      "lokasi": "KCP CURUP",
+      "admin": "FALSE"
     },
     {
       "nik": "20050010",
       "nama": "M. Helmi",
       "posisi": "BM-D",
-      "lokasi": "JAMBI"
+      "lokasi": "JAMBI",
+      "admin": "FALSE"
     },
     {
       "nik": "20080036",
       "nama": "Lantip Widodo",
       "posisi": "BOSM",
-      "lokasi": "JAMBI"
+      "lokasi": "JAMBI",
+      "admin": "FALSE"
     },
     {
       "nik": "20121371",
       "nama": "Jhony Ramadhan",
       "posisi": "BM-NC",
-      "lokasi": "KCP MUARA BUNGO"
+      "lokasi": "KCP MUARA BUNGO",
+      "admin": "FALSE"
     },
     {
       "nik": "20210341",
       "nama": "Hagi Ivano Gusmaldy",
       "posisi": "BOSM",
-      "lokasi": "KCP MUARA BUNGO"
+      "lokasi": "KCP MUARA BUNGO",
+      "admin": "FALSE"
     },
     {
       "nik": "20030020",
       "nama": "Hendra Jumardi",
       "posisi": "BM-NC",
-      "lokasi": "KCP MANNA BENGKULU"
+      "lokasi": "KCP MANNA BENGKULU",
+      "admin": "FALSE"
     },
     {
       "nik": "20131381",
       "nama": "Haniko Putra",
       "posisi": "BOSM",
-      "lokasi": "KCP MANNA BENGKULU"
+      "lokasi": "KCP MANNA BENGKULU",
+      "admin": "FALSE"
     },
     {
       "nik": "20110147",
       "nama": "Andi Setiawan",
       "posisi": "BM-NC",
-      "lokasi": "KCP ARGA MAKMUR"
+      "lokasi": "KCP ARGA MAKMUR",
+      "admin": "FALSE"
     },
     {
       "nik": "20120038",
       "nama": "Edo Alia Putra",
       "posisi": "BOSM",
-      "lokasi": "KCP ARGA MAKMUR"
+      "lokasi": "KCP ARGA MAKMUR",
+      "admin": "FALSE"
     },
     {
       "nik": "20250339",
       "nama": "Fadhil",
       "posisi": "BM-NC",
-      "lokasi": "KCP BINJAI"
+      "lokasi": "KCP BINJAI",
+      "admin": "FALSE"
     },
     {
       "nik": "20090120",
       "nama": "Leny Devita Sari",
       "posisi": "BOSM",
-      "lokasi": "KCP BINJAI"
+      "lokasi": "KCP BINJAI",
+      "admin": "FALSE"
     },
     {
       "nik": "20120555",
       "nama": "Muhammad Rizky",
       "posisi": "BM-NC",
-      "lokasi": "PEMATANG SIANTAR"
+      "lokasi": "PEMATANG SIANTAR",
+      "admin": "FALSE"
     },
     {
       "nik": "20070076",
       "nama": "Jefrizal Ammar",
       "posisi": "BOSM",
-      "lokasi": "PEMATANG SIANTAR"
+      "lokasi": "PEMATANG SIANTAR",
+      "admin": "FALSE"
     },
     {
       "nik": "20110370",
       "nama": "Marthias Alfin Damanik",
       "posisi": "BM-NC",
-      "lokasi": "KCP KISARAN"
+      "lokasi": "KCP KISARAN",
+      "admin": "FALSE"
     },
     {
       "nik": "20210144",
       "nama": "Dimas Tri Soufi",
       "posisi": "BOSM",
-      "lokasi": "KCP KISARAN"
+      "lokasi": "KCP KISARAN",
+      "admin": "FALSE"
     },
     {
       "nik": "20250461",
       "nama": "Masmedia Alam",
       "posisi": "BM-NC",
-      "lokasi": "KCP STABAT"
+      "lokasi": "KCP STABAT",
+      "admin": "FALSE"
     },
     {
       "nik": "20130350",
       "nama": "Puspa Sastika Sari",
       "posisi": "BOSM",
-      "lokasi": "KCP STABAT"
+      "lokasi": "KCP STABAT",
+      "admin": "FALSE"
     },
     {
       "nik": "20030052",
       "nama": "Muhammad Jar'i Daek",
       "posisi": "SrBM-D",
-      "lokasi": "MEDAN BARU"
+      "lokasi": "MEDAN BARU",
+      "admin": "FALSE"
     },
     {
       "nik": "20020042",
       "nama": "Benny Nugraha",
       "posisi": "SRBOSM",
-      "lokasi": "MEDAN BARU"
+      "lokasi": "MEDAN BARU",
+      "admin": "FALSE"
     },
     {
       "nik": "20110531",
       "nama": "Vicry Saputra",
       "posisi": "BIC",
-      "lokasi": "Medan Branch"
+      "lokasi": "MEDAN",
+      "admin": "FALSE"
     },
     {
       "nik": "20110745",
       "nama": "Rio Rahmat Oemara",
       "posisi": "BIC",
-      "lokasi": "Pekanbaru Branch"
+      "lokasi": "PEKANBARU",
+      "admin": "FALSE"
     },
     {
       "nik": "20150286",
       "nama": "Budiman Al Farisy",
       "posisi": "BIC",
-      "lokasi": "Lampung Branch"
+      "lokasi": "LAMPUNG",
+      "admin": "FALSE"
     },
     {
       "nik": "20121316",
       "nama": "Hengky Sumarta",
       "posisi": "BIC",
-      "lokasi": "Bengkulu Branch"
+      "lokasi": "BENGKULU",
+      "admin": "FALSE"
     },
     {
       "nik": "20070073",
       "nama": "Vesylia Dona",
       "posisi": "BIC",
-      "lokasi": "Jambi Branch"
+      "lokasi": "JAMBI",
+      "admin": "FALSE"
     },
     {
       "nik": "20100610",
       "nama": "Mutia Ningsih",
       "posisi": "BIC",
-      "lokasi": "Medan Branch"
+      "lokasi": "MEDAN",
+      "admin": "FALSE"
     },
     {
       "nik": "20150104",
       "nama": "Bagus Ramadhan",
       "posisi": "BIC",
-      "lokasi": "Medan Branch"
+      "lokasi": "MEDAN",
+      "admin": "FALSE"
     },
     {
       "nik": "20131198",
       "nama": "Mukarram",
       "posisi": "BIC",
-      "lokasi": "Aceh Branch"
+      "lokasi": "ACEH",
+      "admin": "FALSE"
     },
     {
       "nik": "20121494",
       "nama": "Ranny Rahmadanny",
       "posisi": "BIC",
-      "lokasi": "Padang Branch"
+      "lokasi": "PADANG",
+      "admin": "FALSE"
     },
     {
       "nik": "20100349",
       "nama": "Zakia Khoiriyah Hasibuan",
       "posisi": "BIC",
-      "lokasi": "Padang Sidimpuan Branch"
+      "lokasi": "PADANG SIDIMPUAN",
+      "admin": "FALSE"
     },
     {
       "nik": "20141173",
       "nama": "Risa Rumitaningrum",
       "posisi": "BIC",
-      "lokasi": "Tanjung Pinang Branch"
+      "lokasi": "TANJUNG PINANG",
+      "admin": "FALSE"
     },
     {
       "nik": "20140914",
       "nama": "Nofri Saputra",
       "posisi": "BIC",
-      "lokasi": "Pekanbaru Branch"
+      "lokasi": "PEKANBARU",
+      "admin": "FALSE"
     },
     {
       "nik": "20130431",
       "nama": "Erina Handayani",
       "posisi": "BIC",
-      "lokasi": "Pangkal Pinang Branch"
+      "lokasi": "PANGKAL PINANG",
+      "admin": "FALSE"
     },
     {
       "nik": "20140502",
       "nama": "Sandy Riza Syafputra",
       "posisi": "BIC",
-      "lokasi": "Palembang Branch"
+      "lokasi": "PALEMBANG",
+      "admin": "FALSE"
     },
     {
       "nik": "20121125",
       "nama": "Andrian Mahardika",
       "posisi": "BIC",
-      "lokasi": "Palembang Branch"
+      "lokasi": "PALEMBANG",
+      "admin": "FALSE"
     }
   ]
 }
