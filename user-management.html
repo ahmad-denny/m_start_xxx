@@ -354,35 +354,35 @@
     <div class="note-banner">
         <i class="fas fa-circle-info"></i>
         <div>
-            <b>Catatan penyimpanan:</b> <i>Perubahan (tambah/edit/hapus/nonaktifkan) disimpan di penyimpanan lokal browser ini. Agar perubahan berlaku permanen untuk semua orang, gunakan tombol </i><b>"Unduh JSON"</b> <i>dan ganti file <code>user_list.json</code> di server dengan file hasil unduhan.</i>
+            <b>Storage note:</b> <i>Changes (add/edit/delete/deactivate) are saved in this browser's local storage. To make the changes permanent for everyone, use the </i><b>"Download JSON"</b> <i>button and replace the <code>user_list.json</code> file on the server with the downloaded file.</i>
         </div>
     </div>
 
     <div class="stats-row">
         <div class="stat-card"><div class="num" id="stat-total">0</div><div class="lbl">TOTAL USER</div></div>
-        <div class="stat-card"><div class="num" id="stat-active">0</div><div class="lbl">AKTIF</div></div>
-        <div class="stat-card"><div class="num" id="stat-inactive">0</div><div class="lbl">NONAKTIF</div></div>
+        <div class="stat-card"><div class="num" id="stat-active">0</div><div class="lbl">ACTIVE</div></div>
+        <div class="stat-card"><div class="num" id="stat-inactive">0</div><div class="lbl">DISABLED</div></div>
         <div class="stat-card"><div class="num" id="stat-admin">0</div><div class="lbl">ADMIN</div></div>
     </div>
 
     <div class="toolbar">
         <div class="search-wrap">
             <i class="fas fa-search"></i>
-            <input type="text" id="search-input" class="search-input" placeholder="Cari NIK, nama, posisi, atau lokasi...">
+            <input type="text" id="search-input" class="search-input" placeholder="Search for NIK, name, position, or location...">
         </div>
         <select id="filter-status" class="filter-select">
-            <option value="all">Semua Status</option>
-            <option value="aktif">Aktif</option>
-            <option value="nonaktif">Nonaktif</option>
+            <option value="all">All Status</option>
+            <option value="aktif">Active</option>
+            <option value="nonaktif">Disabled</option>
         </select>
         <select id="filter-admin" class="filter-select">
-            <option value="all">Semua Role</option>
+            <option value="all">All Role</option>
             <option value="admin">Admin</option>
-            <option value="user">User Biasa</option>
+            <option value="user">Regular User</option>
         </select>
-        <button class="btn-secondary" id="export-btn"><i class="fas fa-download"></i> Unduh JSON</button>
-        <button class="btn-secondary" id="reset-btn"><i class="fas fa-rotate-left"></i> Reset Data</button>
-        <button class="btn-primary" id="add-btn"><i class="fas fa-plus"></i> Tambah User</button>
+        <button class="btn-secondary" id="export-btn"><i class="fas fa-download"></i> Download JSON</button>
+        <button class="btn-secondary" id="reset-btn"><i class="fas fa-rotate-left"></i> Data Reset</button>
+        <button class="btn-primary" id="add-btn"><i class="fas fa-plus"></i> Add New User</button>
     </div>
 
     <div class="table-wrap">
@@ -390,19 +390,19 @@
             <thead>
                 <tr>
                     <th>NIK</th>
-                    <th>Nama</th>
-                    <th>Posisi</th>
-                    <th>Lokasi</th>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Location</th>
                     <th>Role</th>
                     <th>Status</th>
-                    <th>Aksi</th>
+                    <th>Quick Actions</th>
                 </tr>
             </thead>
             <tbody id="table-body"></tbody>
         </table>
         <div class="empty-state" id="empty-state" style="display:none;">
             <i class="fas fa-user-slash"></i>
-            Tidak ada user yang cocok dengan pencarian/filter.
+            No users match the search/filter.
         </div>
     </div>
 </div>
@@ -410,47 +410,47 @@
 <!-- MODAL: ADD/EDIT USER -->
 <div class="modal-overlay" id="user-modal">
     <div class="modal-card">
-        <h3 id="modal-title">Tambah User Baru</h3>
-        <p class="modal-sub" id="modal-sub">Lengkapi data user di bawah ini.</p>
+        <h3 id="modal-title">Add New User</h3>
+        <p class="modal-sub" id="modal-sub"> Complete the user details below..</p>
         <form id="user-form">
             <input type="hidden" id="form-original-nik">
             <div class="field">
                 <label for="f-nik">NIK</label>
                 <input type="text" id="f-nik" inputmode="numeric" placeholder="Contoh: 20120936" required>
-                <div class="field-error" id="err-nik">NIK wajib diisi dan harus unik.</div>
+                <div class="field-error" id="err-nik">The NIK is a mandatory field and must be unique.</div>
             </div>
             <div class="field">
-                <label for="f-nama">Nama Lengkap</label>
-                <input type="text" id="f-nama" placeholder="Contoh: Rifky Indrawan" required>
-                <div class="field-error" id="err-nama">Nama wajib diisi.</div>
+                <label for="f-nama">Full Name</label>
+                <input type="text" id="f-nama" placeholder="Contoh: Ahmad Denny" required>
+                <div class="field-error" id="err-nama">The name field is required.</div>
             </div>
             <div class="field">
-                <label for="f-posisi">Posisi</label>
+                <label for="f-posisi">Position</label>
                 <input type="text" id="f-posisi" placeholder="Contoh: RBPM" required>
-                <div class="field-error" id="err-posisi">Posisi wajib diisi.</div>
+                <div class="field-error" id="err-posisi">This field is required.</div>
             </div>
             <div class="field">
-                <label for="f-lokasi">Lokasi</label>
+                <label for="f-lokasi">Location</label>
                 <input type="text" id="f-lokasi" placeholder="Contoh: REGION" required>
-                <div class="field-error" id="err-lokasi">Lokasi wajib diisi.</div>
+                <div class="field-error" id="err-lokasi">The location is required.</div>
             </div>
             <div class="field">
                 <label for="f-admin">Role</label>
                 <select id="f-admin">
-                    <option value="FALSE">User Biasa</option>
+                    <option value="FALSE">Reguler User</option>
                     <option value="TRUE">Admin</option>
                 </select>
             </div>
             <div class="field">
                 <label for="f-status">Status</label>
                 <select id="f-status">
-                    <option value="AKTIF">Aktif</option>
-                    <option value="NONAKTIF">Nonaktif</option>
+                    <option value="AKTIF">Active</option>
+                    <option value="NONAKTIF">Disabled</option>
                 </select>
             </div>
             <div class="modal-actions">
-                <button type="button" class="btn-secondary" id="modal-cancel">Batal</button>
-                <button type="submit" class="btn-primary" id="modal-save"><i class="fas fa-check"></i> Simpan</button>
+                <button type="button" class="btn-secondary" id="modal-cancel">Cancel</button>
+                <button type="submit" class="btn-primary" id="modal-save"><i class="fas fa-check"></i> Submit</button>
             </div>
         </form>
     </div>
@@ -460,11 +460,11 @@
 <div class="modal-overlay" id="confirm-modal">
     <div class="modal-card">
         <div class="confirm-icon" id="confirm-icon"><i class="fas fa-triangle-exclamation"></i></div>
-        <h3 id="confirm-title">Konfirmasi</h3>
-        <p class="modal-sub" id="confirm-text">Apakah Anda yakin?</p>
+        <h3 id="confirm-title">Confirmation</h3>
+        <p class="modal-sub" id="confirm-text">Are you sure?</p>
         <div class="modal-actions">
-            <button type="button" class="btn-secondary" id="confirm-cancel">Batal</button>
-            <button type="button" class="btn-primary" id="confirm-ok">Ya, Lanjutkan</button>
+            <button type="button" class="btn-secondary" id="confirm-cancel">Cancel</button>
+            <button type="button" class="btn-primary" id="confirm-ok">Yes, Continue</button>
         </div>
     </div>
 </div>
@@ -503,7 +503,7 @@
 
     async function seedFromJsonFile() {
         const res = await fetch('user_list.json', { cache: 'no-store' });
-        if (!res.ok) throw new Error('Gagal memuat user_list.json');
+        if (!res.ok) throw new Error('Failed to load user_list.json');
         const data = await res.json();
         const list = Array.isArray(data.user_list) ? data.user_list : [];
         return list.map(normalizeUser);
@@ -526,8 +526,8 @@
     async function init() {
         const nik = localStorage.getItem('saved_user_nik');
         if (!nik) {
-            document.getElementById('denied-title').textContent = 'Belum Login';
-            document.getElementById('denied-text').textContent = 'Silakan login terlebih dahulu melalui halaman utama untuk mengakses fitur ini.';
+            document.getElementById('denied-title').textContent = 'Not Yet Login';
+            document.getElementById('denied-text').textContent = 'Please log in via the main page first to access this feature.';
             showScreen('denied');
             return;
         }
@@ -542,16 +542,16 @@
                 users = stored;
             }
         } catch (err) {
-            document.getElementById('denied-title').textContent = 'Gagal Memuat Data';
-            document.getElementById('denied-text').textContent = 'Tidak dapat memuat user_list.json. Hubungi administrator sistem.';
+            document.getElementById('denied-title').textContent = 'Failed to load data';
+            document.getElementById('denied-text').textContent = 'Unable to load user_list.json. Contact the system administrator.';
             showScreen('denied');
             return;
         }
 
         currentUser = users.find(u => u.nik === String(nik).trim());
         if (!currentUser || currentUser.admin !== 'TRUE') {
-            document.getElementById('denied-title').textContent = 'Akses Ditolak';
-            document.getElementById('denied-text').textContent = 'Halaman Manajemen User hanya bisa diakses oleh admin.';
+            document.getElementById('denied-title').textContent = 'Access denied';
+            document.getElementById('denied-text').textContent = 'The User Management page can only be accessed by the admin.';
             showScreen('denied');
             return;
         }
@@ -617,8 +617,8 @@
     const userForm = document.getElementById('user-form');
 
     function openAddModal() {
-        document.getElementById('modal-title').textContent = 'Tambah User Baru';
-        document.getElementById('modal-sub').textContent = 'Isi data user baru yang akan ditambahkan.';
+        document.getElementById('modal-title').textContent = 'Add New User';
+        document.getElementById('modal-sub').textContent = 'Enter the details of the new user to be added.';
         document.getElementById('form-original-nik').value = '';
         document.getElementById('f-nik').value = '';
         document.getElementById('f-nik').disabled = false;
@@ -635,7 +635,7 @@
         const u = users.find(x => x.nik === nik);
         if (!u) return;
         document.getElementById('modal-title').textContent = 'Edit User';
-        document.getElementById('modal-sub').textContent = `Mengubah data untuk ${u.nama}.`;
+        document.getElementById('modal-sub').textContent = `Modifying data for ${u.nama}.`;
         document.getElementById('form-original-nik').value = u.nik;
         document.getElementById('f-nik').value = u.nik;
         document.getElementById('f-nik').disabled = true;
@@ -675,11 +675,11 @@
         const isEdit = !!originalNik;
         const dupExists = users.some(u => u.nik === nik && u.nik !== originalNik);
         if (!isEdit && users.some(u => u.nik === nik)) {
-            document.getElementById('err-nik').textContent = 'NIK sudah digunakan user lain.';
+            document.getElementById('err-nik').textContent = 'The NIK is already in use by another user.';
             document.getElementById('err-nik').style.display = 'block';
             hasError = true;
         } else if (isEdit && dupExists) {
-            document.getElementById('err-nik').textContent = 'NIK sudah digunakan user lain.';
+            document.getElementById('err-nik').textContent = 'The ID is already in use by another user.';
             document.getElementById('err-nik').style.display = 'block';
             hasError = true;
         }
@@ -691,10 +691,10 @@
         if (isEdit) {
             const idx = users.findIndex(u => u.nik === originalNik);
             if (idx !== -1) users[idx] = newUser;
-            showToast('Data user berhasil diperbarui.', 'success');
+            showToast('User data successfully updated.', 'success');
         } else {
             users.push(newUser);
-            showToast('User baru berhasil ditambahkan.', 'success');
+            showToast('New user successfully added.', 'success');
         }
 
         saveToStorage();
@@ -718,16 +718,16 @@
         if (type === 'delete') {
             icon.className = 'confirm-icon danger';
             icon.innerHTML = '<i class="fas fa-trash"></i>';
-            document.getElementById('confirm-title').textContent = 'Hapus User';
-            document.getElementById('confirm-text').textContent = `Anda yakin ingin menghapus "${u.nama}" (NIK ${u.nik})? Tindakan ini tidak dapat dibatalkan.`;
-            document.getElementById('confirm-ok').textContent = 'Ya, Hapus';
+            document.getElementById('confirm-title').textContent = 'Delete User';
+            document.getElementById('confirm-text').textContent = `Are you sure you want to delete? "${u.nama}" (NIK ${u.nik})? This action cannot be undone.`;
+            document.getElementById('confirm-ok').textContent = 'Yes, Delete';
         } else {
             const willActivate = u.status === 'NONAKTIF';
             icon.className = 'confirm-icon warn';
             icon.innerHTML = `<i class="fas ${willActivate ? 'fa-toggle-on' : 'fa-toggle-off'}"></i>`;
             document.getElementById('confirm-title').textContent = willActivate ? 'Aktifkan User' : 'Nonaktifkan User';
-            document.getElementById('confirm-text').textContent = `Anda yakin ingin ${willActivate ? 'mengaktifkan' : 'menonaktifkan'} "${u.nama}" (NIK ${u.nik})?`;
-            document.getElementById('confirm-ok').textContent = 'Ya, Lanjutkan';
+            document.getElementById('confirm-text').textContent = `Are you sure you want to ${willActivate ? 'mengaktifkan' : 'menonaktifkan'} "${u.nama}" (NIK ${u.nik})?`;
+            document.getElementById('confirm-ok').textContent = 'Yes, Continue';
         }
         confirmModal.classList.add('visible');
     }
@@ -746,10 +746,10 @@
         if (type === 'delete') {
             const removedName = users[idx].nama;
             users.splice(idx, 1);
-            showToast(`User "${removedName}" berhasil dihapus.`, 'success');
+            showToast(`User "${removedName}" successfully deleted.`, 'success');
         } else {
             users[idx].status = users[idx].status === 'AKTIF' ? 'NONAKTIF' : 'AKTIF';
-            showToast(`Status "${users[idx].nama}" diubah menjadi ${users[idx].status === 'AKTIF' ? 'Aktif' : 'Nonaktif'}.`, 'success');
+            showToast(`Status "${users[idx].nama}" changed into ${users[idx].status === 'AKTIF' ? 'Aktif' : 'Nonaktif'}.`, 'success');
         }
 
         saveToStorage();
@@ -785,19 +785,19 @@
         a.click();
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
-        showToast('File user_list.json berhasil diunduh.', 'success');
+        showToast('The file user_list.json was successfully downloaded.', 'success');
     });
 
     // ---------- RESET ----------
     document.getElementById('reset-btn').addEventListener('click', async () => {
-        if (!confirm('Reset akan menghapus semua perubahan lokal dan memuat ulang data asli dari user_list.json. Lanjutkan?')) return;
+        if (!confirm('Resetting will discard all local changes and reload the original data from user_list.json. Proceed?')) return;
         try {
             users = await seedFromJsonFile();
             saveToStorage();
             renderTable();
-            showToast('Data berhasil direset ke data awal.', 'success');
+            showToast('The data has been successfully reset to the initial state.', 'success');
         } catch (err) {
-            showToast('Gagal mereset data.', 'error');
+            showToast('Failed to reset data.', 'error');
         }
     });
 
