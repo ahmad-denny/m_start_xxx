@@ -6,7 +6,14 @@
       "posisi": "EBPS",
       "lokasi": "REGION",
       "admin": "FALSE"
-    },    
+    },
+    {
+      "nik": "20160352",
+      "nama": "Ahmad Afandi",
+      "posisi": "HCBP Region",
+      "lokasi": "REGION",
+      "admin": "FALSE"
+    },
     {
       "nik": "99999999",
       "nama": "Ahmad Denny",
@@ -754,6 +761,62 @@
       "nama": "Andrian Mahardika",
       "posisi": "BIC",
       "lokasi": "PALEMBANG",
+      "admin": "FALSE"
+    },
+    {
+      "nik": "20121177",
+      "nama": "Aulina Rahmi",
+      "posisi": "BSS",
+      "lokasi": "LAMPUNG",
+      "admin": "FALSE"
+    },
+    {
+      "nik": "20121880",
+      "nama": "Novita Sari",
+      "posisi": "BSS",
+      "lokasi": "BENGKULU",
+      "admin": "FALSE"
+    },
+    {
+      "nik": "20110841",
+      "nama": "David Perdana Putra",
+      "posisi": "BSS",
+      "lokasi": "PADANG",
+      "admin": "FALSE"
+    },
+    {
+      "nik": "20121736",
+      "nama": "Rakhmi Ahadiati",
+      "posisi": "BSS",
+      "lokasi": "PALEMBANG",
+      "admin": "FALSE"
+    },
+    {
+      "nik": "20180284",
+      "nama": "Siti Indrayani Nasution",
+      "posisi": "BSS",
+      "lokasi": "PEKANBARU",
+      "admin": "FALSE"
+    },
+    {
+      "nik": "20080279",
+      "nama": "Indah Rahmawati Abdi",
+      "posisi": "BSS",
+      "lokasi": "MEDAN",
+      "admin": "FALSE"
+    },
+    {
+      "nik": "20120898",
+      "nama": "Listia Sukma Putri",
+      "posisi": "BSS",
+      "lokasi": "BANDA ACEH",
+      "admin": "FALSE"
+    },
+    {
+      "nik": "20131618",
+      "nama": "Wirdha Rahmah Siagian",
+      "posisi": "BSS",
+      "lokasi": "MEDAN BARU",
       "admin": "FALSE"
     }
   ]
