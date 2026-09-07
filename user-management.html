@@ -372,8 +372,8 @@
         </div>
         <select id="filter-status" class="filter-select">
             <option value="all">All Status</option>
-            <option value="aktif">Active</option>
-            <option value="nonaktif">Non Active</option>
+            <option value="ACTIVE">Active</option>
+            <option value="deactivate">Non Active</option>
         </select>
         <select id="filter-admin" class="filter-select">
             <option value="all">All Role</option>
@@ -444,8 +444,8 @@
             <div class="field">
                 <label for="f-status">Status</label>
                 <select id="f-status">
-                    <option value="AKTIF">Active</option>
-                    <option value="NONAKTIF">Non Active</option>
+                    <option value="ACTIVE">Active</option>
+                    <option value="deactivate">Non Active</option>
                 </select>
             </div>
             <div class="modal-actions">
@@ -482,7 +482,7 @@
             posisi: u.posisi || '',
             lokasi: u.lokasi || '',
             admin: String(u.admin || 'FALSE').toUpperCase() === 'TRUE' ? 'TRUE' : 'FALSE',
-            status: String(u.status || 'AKTIF').toUpperCase() === 'NONAKTIF' ? 'NONAKTIF' : 'AKTIF'
+            status: String(u.status || 'ACTIVE').toUpperCase() === 'deactivate' ? 'deactivate' : 'ACTIVE'
         };
     }
 
@@ -567,7 +567,7 @@
 
         return users.filter(u => {
             const matchQ = !q || [u.nik, u.nama, u.posisi, u.lokasi].join(' ').toLowerCase().includes(q);
-            const matchStatus = statusFilter === 'all' || (statusFilter === 'aktif' && u.status === 'AKTIF') || (statusFilter === 'nonaktif' && u.status === 'NONAKTIF');
+            const matchStatus = statusFilter === 'all' || (statusFilter === 'ACTIVE' && u.status === 'ACTIVE') || (statusFilter === 'deactivate' && u.status === 'deactivate');
             const matchAdmin = adminFilter === 'all' || (adminFilter === 'admin' && u.admin === 'TRUE') || (adminFilter === 'user' && u.admin === 'FALSE');
             return matchQ && matchStatus && matchAdmin;
         });
@@ -578,8 +578,8 @@
         const list = getFilteredUsers();
 
         document.getElementById('stat-total').textContent = users.length;
-        document.getElementById('stat-active').textContent = users.filter(u => u.status === 'AKTIF').length;
-        document.getElementById('stat-inactive').textContent = users.filter(u => u.status === 'NONAKTIF').length;
+        document.getElementById('stat-active').textContent = users.filter(u => u.status === 'ACTIVE').length;
+        document.getElementById('stat-inactive').textContent = users.filter(u => u.status === 'deactivate').length;
         document.getElementById('stat-admin').textContent = users.filter(u => u.admin === 'TRUE').length;
 
         tbody.innerHTML = '';
@@ -587,18 +587,18 @@
 
         list.forEach(u => {
             const tr = document.createElement('tr');
-            if (u.status === 'NONAKTIF') tr.classList.add('row-inactive');
+            if (u.status === 'deactivate') tr.classList.add('row-inactive');
             tr.innerHTML = `
                 <td class="nik-cell">${escapeHtml(u.nik)}</td>
                 <td class="nama-cell">${escapeHtml(u.nama)}</td>
                 <td>${escapeHtml(u.posisi)}</td>
                 <td>${escapeHtml(u.lokasi)}</td>
                 <td>${u.admin === 'TRUE' ? '<span class="badge badge-admin"><i class="fas fa-shield-halved"></i> Admin</span>' : '<span class="badge badge-off">User</span>'}</td>
-                <td>${u.status === 'AKTIF' ? '<span class="badge badge-on"><i class="fas fa-circle-check"></i> Aktif</span>' : '<span class="badge badge-off"><i class="fas fa-circle-minus"></i> Nonaktif</span>'}</td>
+                <td>${u.status === 'ACTIVE' ? '<span class="badge badge-on"><i class="fas fa-circle-check"></i> ACTIVE</span>' : '<span class="badge badge-off"><i class="fas fa-circle-minus"></i> deactivate</span>'}</td>
                 <td>
                     <div class="row-actions">
                         <button class="icon-btn edit" title="Edit" data-action="edit" data-nik="${escapeAttr(u.nik)}"><i class="fas fa-pen"></i></button>
-                        <button class="icon-btn toggle" title="${u.status === 'AKTIF' ? 'Nonaktifkan' : 'Aktifkan'}" data-action="toggle" data-nik="${escapeAttr(u.nik)}"><i class="fas ${u.status === 'AKTIF' ? 'fa-toggle-on' : 'fa-toggle-off'}"></i></button>
+                        <button class="icon-btn toggle" title="${u.status === 'ACTIVE' ? 'deactivatekan' : 'ACTIVEkan'}" data-action="toggle" data-nik="${escapeAttr(u.nik)}"><i class="fas ${u.status === 'ACTIVE' ? 'fa-toggle-on' : 'fa-toggle-off'}"></i></button>
                         <button class="icon-btn delete" title="Hapus" data-action="delete" data-nik="${escapeAttr(u.nik)}"><i class="fas fa-trash"></i></button>
                     </div>
                 </td>
@@ -626,7 +626,7 @@
         document.getElementById('f-posisi').value = '';
         document.getElementById('f-lokasi').value = '';
         document.getElementById('f-admin').value = 'FALSE';
-        document.getElementById('f-status').value = 'AKTIF';
+        document.getElementById('f-status').value = 'ACTIVE';
         clearFormErrors();
         userModal.classList.add('visible');
     }
@@ -722,11 +722,11 @@
             document.getElementById('confirm-text').textContent = `Are you sure you want to delete? "${u.nama}" (NIK ${u.nik})? This action cannot be undone.`;
             document.getElementById('confirm-ok').textContent = 'Yes, Delete';
         } else {
-            const willActivate = u.status === 'NONAKTIF';
+            const willActivate = u.status === 'deactivate';
             icon.className = 'confirm-icon warn';
             icon.innerHTML = `<i class="fas ${willActivate ? 'fa-toggle-on' : 'fa-toggle-off'}"></i>`;
-            document.getElementById('confirm-title').textContent = willActivate ? 'Aktifkan User' : 'Nonaktifkan User';
-            document.getElementById('confirm-text').textContent = `Are you sure you want to ${willActivate ? 'mengaktifkan' : 'menonaktifkan'} "${u.nama}" (NIK ${u.nik})?`;
+            document.getElementById('confirm-title').textContent = willActivate ? 'Activate User' : 'Disable User';
+            document.getElementById('confirm-text').textContent = `Are you sure you want to ${willActivate ? 'activate' : 'deactivate'} "${u.nama}" (NIK ${u.nik})?`;
             document.getElementById('confirm-ok').textContent = 'Yes, Continue';
         }
         confirmModal.classList.add('visible');
@@ -748,8 +748,8 @@
             users.splice(idx, 1);
             showToast(`User "${removedName}" successfully deleted.`, 'success');
         } else {
-            users[idx].status = users[idx].status === 'AKTIF' ? 'NONAKTIF' : 'AKTIF';
-            showToast(`Status "${users[idx].nama}" changed into ${users[idx].status === 'AKTIF' ? 'Aktif' : 'Nonaktif'}.`, 'success');
+            users[idx].status = users[idx].status === 'ACTIVE' ? 'deactivate' : 'ACTIVE';
+            showToast(`Status "${users[idx].nama}" changed into ${users[idx].status === 'ACTIVE' ? 'ACTIVE' : 'deactivate'}.`, 'success');
         }
 
         saveToStorage();
