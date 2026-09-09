@@ -105,6 +105,9 @@
             display: flex;
             flex-direction: column;
             position: relative;
+            overflow-y: hidden; /* Memaksa layout stabil */
+            scrollbar-width: none; /* Untuk Firefox */
+            -ms-overflow-style: none;  /* Untuk IE and Edge */            
 
         }
 
