@@ -11,71 +11,53 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* ============================================ */
-        /* CSS VARIABLES (THEMING ENGINE)              */
-        /* ============================================ */
         :root {
             --primary-purple: #7c3aed;
             --primary-dark: #4c1d95;
-            
-            /* DEFAULT: DARK MODE */
             --bg-body: url('img/bg-web.png') center center / cover no-repeat fixed;
             --bg-overlay: rgba(10, 5, 25, 0.65);
             --text-main: #ffffff;
             --text-muted: #d8b4fe;
-            
             --card-bg: rgba(15, 8, 30, 0.85);
             --card-border: rgba(255, 255, 255, 0.12);
             --card-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
             --card-hover-shadow: 0 20px 40px -10px rgba(101, 28, 236, 0.4);
-            
             --icon-bg: rgba(255, 255, 255, 0.08);
             --icon-color: #fff;
-            
             --badge-bg: rgba(34, 197, 94, 0.15);
             --badge-text: #4ade80;
             --badge-border: rgba(34, 197, 94, 0.25);
-
             --btn-grad-start: #9b5de5;
             --btn-grad-end: #6441A5;
             --btn-shadow: rgba(0,0,0,0.3);
-
             --ticker-bg: rgba(124, 58, 237, 0.2);
             --ticker-border: rgba(255, 255, 255, 0.15);
             --ticker-text: #f3e8ff;
-
             --update-icon-color: #10b981;
             --update-glow: rgba(16, 185, 129, 0.4);
             --error-color: #f87171;
         }
 
-        /* LIGHT MODE OVERRIDES */
         body.light-mode {
             --bg-body: url('img/bg-web-light.png') center center / cover no-repeat fixed;
             --bg-overlay: transparent;
             --text-main: #1e293b;
             --text-muted: #64748b;
-            
             --card-bg: rgba(255, 255, 255, 0.92);
             --card-border: rgba(255, 255, 255, 1);
             --card-shadow: 0 10px 30px -5px rgba(100, 65, 165, 0.1);
             --card-hover-shadow: 0 20px 40px -5px rgba(100, 65, 165, 0.2);
-            
             --icon-bg: #f5f3ff;
             --icon-color: var(--primary-purple);
-            
             --badge-bg: #ecfdf5;
             --badge-text: #059669;
             --badge-border: #d1fae5;
-
             --btn-grad-start: #7c3aed;
             --btn-grad-end: #4c1d95;
             --btn-shadow: rgba(124, 58, 237, 0.3);
-
             --ticker-bg: rgba(245, 243, 255, 0.95);
             --ticker-border: rgba(124, 58, 237, 0.2);
             --ticker-text: #5b21b6;
-
             --update-icon-color: #059669;
             --update-glow: rgba(5, 150, 105, 0.3);
         }
@@ -86,317 +68,125 @@
         }
 
         * { 
-            margin: 0; 
-            padding: 0; 
-            box-sizing: border-box; 
+            margin: 0; padding: 0; box-sizing: border-box; 
             font-family: 'Plus Jakarta Sans', sans-serif; 
             transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; 
         }
 
         body {
-            margin: 0; /* Pastikan tidak ada margin default browser */
-            padding: 0; 
+            margin: 0; padding: 0; 
             background: var(--bg-body);
             color: var(--text-main);
-            min-height: 100vh;
-            min-height: 100dvh; 
-            width: 100vw;
-            overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            overflow-y: hidden; /* Memaksa layout stabil */
-            scrollbar-width: none; /* Untuk Firefox */
-            -ms-overflow-style: none;  /* Untuk IE and Edge */            
-
+            min-height: 100vh; min-height: 100dvh; 
+            width: 100vw; overflow-x: hidden;
+            display: flex; flex-direction: column;
+            position: relative; overflow-y: hidden;
+            scrollbar-width: none; -ms-overflow-style: none;
         }
 
         body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background: var(--bg-overlay);
-            z-index: -1;
-            pointer-events: none;
-            transition: background 0.3s ease;
+            content: ''; position: fixed; inset: 0;
+            background: var(--bg-overlay); z-index: -1;
+            pointer-events: none; transition: background 0.3s ease;
         }
 
         .app-container {
-            flex: 1; 
-            display: flex; 
-            flex-direction: column; 
+            flex: 1; display: flex; flex-direction: column; 
             padding: 1.5rem 1.5rem 1.25rem 1.5rem;
-            max-width: 1400px; 
-            margin: 0 auto; 
-            width: 100%;
+            max-width: 1400px; margin: 0 auto; width: 100%;
         }
 
         header { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            margin-bottom: 1.5rem; 
-            flex-shrink: 0;
-            gap: 12px;
-            flex-wrap: wrap;
-            padding-top: 0.5rem;
+            display: flex; justify-content: space-between; align-items: center; 
+            margin-bottom: 1.5rem; flex-shrink: 0; gap: 12px;
+            flex-wrap: wrap; padding-top: 0.5rem;
         }
 
-        .brand { 
-            display: flex; 
-            align-items: center; 
-            gap: 10px; 
-        }
-
-        .logo-icon { 
-            width: 40px; 
-            height: 40px; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            flex-shrink: 0;
-        }
-        .logo-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
+        .brand { display: flex; align-items: center; gap: 10px; }
+        .logo-icon { width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .logo-icon img { width: 100%; height: 100%; object-fit: contain; }
         .brand-text h1 { font-size: 1.15rem; font-weight: 700; line-height: 1.2; color: #eeeded;}
         .brand-text p { font-size: 0.78rem; color: #eeeded; }
-        
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            flex-wrap: wrap;
-        }
-
-        .header-actions { 
-            display: flex; 
-            align-items: center; 
-            gap: 10px; 
-        }
+        .header-right { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+        .header-actions { display: flex; align-items: center; gap: 10px; }
 
         .action-btn {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            color: var(--text-main);
-            width: 38px; 
-            height: 38px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex; 
-            align-items: center; 
-            justify-content: center;
-            font-size: 0.95rem;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            flex-shrink: 0;
-            text-decoration: none;
+            background: var(--card-bg); border: 1px solid var(--card-border); color: var(--text-main);
+            width: 38px; height: 38px; border-radius: 50%; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; font-size: 0.95rem;
+            backdrop-filter: blur(10px); box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease; flex-shrink: 0; text-decoration: none;
         }
+        .action-btn:hover { transform: scale(1.08); }
+        .theme-toggle:hover { background: var(--primary-purple); color: white; border-color: var(--primary-purple); }
+        .logout-btn:hover { background: #ef4444; color: white; border-color: #ef4444; }
 
-        .action-btn:hover {
-            transform: scale(1.08);
-        }
-
-        .theme-toggle:hover {
-            background: var(--primary-purple);
-            color: white;
-            border-color: var(--primary-purple);
-        }
-
-        .logout-btn:hover {
-            background: #ef4444;
-            color: white;
-            border-color: #ef4444;
-        }
-
-        .dashboard-grid {
-            display: grid; 
-            grid-template-columns: repeat(4, 1fr); 
-            gap: 1.2rem;
-            flex: 1; 
-        }
+        .dashboard-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; flex: 1; }
 
         .app-card {
-            border: 1px solid var(--card-border); 
-            box-shadow: var(--card-shadow);
-            border-radius: 20px;
-            padding: 1.25rem;
-            display: flex; 
-            flex-direction: column;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            overflow: hidden; 
-            background-color: var(--card-bg); 
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border); box-shadow: var(--card-shadow); border-radius: 20px;
+            padding: 1.25rem; display: flex; flex-direction: column;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; 
+            background-color: var(--card-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
         }
-
         .app-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
+            content: ''; position: absolute; inset: 0;
             background: linear-gradient(to bottom, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.05) 100%);
-            z-index: 0;
-            pointer-events: none;
-            opacity: 0.5;
+            z-index: 0; pointer-events: none; opacity: 0.5;
         }
-
         .card-header, .card-title, .card-desc, .btn-launch { position: relative; z-index: 1; }
-
-        .app-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--card-hover-shadow);
-            border-color: rgba(155, 93, 229, 0.4);
-        }
-
-        .card-header { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            margin-bottom: 0.85rem; 
-        }
+        .app-card:hover { transform: translateY(-4px); box-shadow: var(--card-hover-shadow); border-color: rgba(155, 93, 229, 0.4); }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; }
         
         .icon-wrapper {
-            width: 42px; 
-            height: 42px; 
-            border-radius: 12px;
-            display: flex; 
-            align-items: center; 
-            justify-content: center;
-            font-size: 1.1rem;
-            background: var(--icon-bg);
-            color: var(--icon-color);
-            border: 1px solid rgba(255,255,255,0.05);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            flex-shrink: 0;
+            width: 42px; height: 42px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+            background: var(--icon-bg); color: var(--icon-color);
+            border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(10px);
+            transition: all 0.3s ease; flex-shrink: 0;
         }
 
-        /* BADGE CONTAINER */
-        .badge-container {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
+        .badge-container { display: flex; align-items: center; gap: 6px; }
         .status-badge {
-            font-size: 0.72rem; 
-            padding: 3px 10px; 
-            border-radius: 12px;
-            background: var(--badge-bg); 
-            color: var(--badge-text);
-            border: 1px solid var(--badge-border);
-            font-weight: 600; 
-            backdrop-filter: blur(4px);
-            white-space: nowrap;
+            font-size: 0.72rem; padding: 3px 10px; border-radius: 12px;
+            background: var(--badge-bg); color: var(--badge-text); border: 1px solid var(--badge-border);
+            font-weight: 600; backdrop-filter: blur(4px); white-space: nowrap;
         }
 
-        /* UPDATE INDICATOR ICON */
         .update-icon {
-            display: none;
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            background: var(--update-icon-color);
-            color: white;
-            font-size: 0.65rem;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            animation: pulse 2s infinite;
-            box-shadow: 0 0 10px var(--update-glow);
-            transition: all 0.3s ease;
-            flex-shrink: 0;
+            display: none; width: 22px; height: 22px; border-radius: 50%;
+            background: var(--update-icon-color); color: white; font-size: 0.65rem;
+            align-items: center; justify-content: center; cursor: pointer;
+            animation: pulse 2s infinite; box-shadow: 0 0 10px var(--update-glow);
+            transition: all 0.3s ease; flex-shrink: 0;
         }
+        .has-update .update-icon { display: flex; }
+        .update-icon:hover { transform: scale(1.15); box-shadow: 0 0 15px var(--update-glow); }
+        @keyframes pulse { 0%, 100% { box-shadow: 0 0 8px var(--update-glow); } 50% { box-shadow: 0 0 18px var(--update-glow); } }
 
-        .has-update .update-icon {
-            display: flex;
-        }
-
-        .update-icon:hover {
-            transform: scale(1.15);
-            box-shadow: 0 0 15px var(--update-glow);
-        }
-
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 8px var(--update-glow); }
-            50% { box-shadow: 0 0 18px var(--update-glow); }
-        }
-
-        /* GLOBAL TOOLTIP - Fixed position */
         .global-tooltip {
-            position: fixed;
-            background: var(--card-bg);
-            color: var(--text-main);
-            padding: 8px 14px;
-            border-radius: 10px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            white-space: nowrap;
-            border: 1px solid var(--card-border);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-            z-index: 9999;
-            pointer-events: none;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.2s ease, visibility 0.2s ease;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            position: fixed; background: var(--card-bg); color: var(--text-main);
+            padding: 8px 14px; border-radius: 10px; font-size: 0.75rem; font-weight: 600;
+            white-space: nowrap; border: 1px solid var(--card-border);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3); z-index: 9999; pointer-events: none;
+            opacity: 0; visibility: hidden; transition: opacity 0.2s ease, visibility 0.2s ease;
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
         }
+        .global-tooltip.visible { opacity: 1; visibility: visible; }
 
-        .global-tooltip.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .card-title { 
-            font-size: 1.1rem; 
-            font-weight: 700; 
-            margin-bottom: 0.4rem; 
-            text-shadow: 0 1px 2px rgba(0,0,0,0.1); 
-        }
-        
-        .card-desc {
-            color: var(--text-muted); 
-            font-size: 0.78rem; 
-            line-height: 1.45; 
-            flex-grow: 1; 
-            display: block;
-            margin-bottom: 0.8rem;
-        }
-
-        .card-desc b {
-            color: var(--text-main);
-        }
+        .card-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem; text-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+        .card-desc { color: var(--text-muted); font-size: 0.78rem; line-height: 1.45; flex-grow: 1; display: block; margin-bottom: 0.8rem; }
+        .card-desc b { color: var(--text-main); }
 
         .btn-launch {
-            display: flex;  
-            align-items: center;
-            justify-content: center; 
-            gap: 8px;
-            width: 100%; 
-            padding: 10px 14px; 
-            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            width: 100%; padding: 10px 14px; border-radius: 12px;
             background: linear-gradient(135deg, var(--btn-grad-start), var(--btn-grad-end));
-            color: white; 
-            text-decoration: none; 
-            font-weight: 600; 
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.15);
-            margin-top: auto;
-            box-shadow: 0 4px 15px var(--btn-shadow);
-            cursor: pointer;
+            color: white; text-decoration: none; font-weight: 600; font-size: 0.85rem;
+            transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.15);
+            margin-top: auto; box-shadow: 0 4px 15px var(--btn-shadow); cursor: pointer;
         }
-
-        .btn-launch:hover {
-            transform: translateY(-1px);
-            filter: brightness(1.1);
-        }
+        .btn-launch:hover { transform: translateY(-1px); filter: brightness(1.1); }
 
         .card-dashboard .icon-wrapper { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
         .card-indicator .icon-wrapper { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
@@ -404,282 +194,112 @@
         .card-direct .icon-wrapper { background: rgba(16, 185, 129, 0.15); color: #10b981; }
         .card-pbt .icon-wrapper { background: rgba(139, 92, 246, 0.15); color: #8b5cf6; }
 
-        /* TICKER */
         .ticker-container {
-            margin-top: 1rem;
-            width: 100%;
-            overflow: hidden;
-            background: var(--ticker-bg);
-            border: 1px solid var(--ticker-border);
-            border-radius: 12px;
-            padding: 8px 0;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            display: flex;
-            align-items: center;
-            flex-shrink: 0;
+            margin-top: 1rem; width: 100%; overflow: hidden;
+            background: var(--ticker-bg); border: 1px solid var(--ticker-border); border-radius: 12px;
+            padding: 8px 0; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            display: flex; align-items: center; flex-shrink: 0;
         }
-
         .ticker-wrapper {
-            display: flex;
-            width: 100%;
-            overflow: hidden;
+            display: flex; width: 100%; overflow: hidden;
             mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
             -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
         }
+        .ticker-content { display: flex; white-space: nowrap; animation: tickerAnimation 22s linear infinite; }
+        .ticker-item { font-size: 0.8rem; font-weight: 600; color: var(--ticker-text); padding: 0 1.5rem; display: flex; align-items: center; gap: 8px; }
+        @keyframes tickerAnimation { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .ticker-container:hover .ticker-content { animation-play-state: paused; }
 
-        .ticker-content {
-            display: flex;
-            white-space: nowrap;
-            animation: tickerAnimation 22s linear infinite;
-        }
+        footer { text-align: center; padding: 0.75rem 0 0.25rem 0; color: #ffffff; font-size: 0.72rem; flex-shrink: 0; }
 
-        .ticker-item {
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--ticker-text);
-            padding: 0 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        @keyframes tickerAnimation {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        .ticker-container:hover .ticker-content {
-            animation-play-state: paused;
-        }
-
-        footer { 
-            text-align: center; 
-            padding: 0.75rem 0 0.25rem 0; 
-            color: #ffffff; 
-            font-size: 0.72rem; 
-            flex-shrink: 0; 
-        }
-
-        /* RESPONSIVE LAYOUT BREAKPOINTS */
         @media (max-width: 1100px) {
-            .dashboard-grid { 
-                grid-template-columns: repeat(2, 1fr); 
-                gap: 1rem; 
-            }
+            .dashboard-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
         }
 
         @media (max-width: 768px) {
-            body { 
-                overflow-y: auto !important; 
-            }
-            .app-container { 
-                padding: 0.85rem; 
-            }
-            
+            body { overflow-y: auto !important; }
+            .app-container { padding: 0.85rem; }
             header { 
-                position: sticky;
-                top: 0;
-                z-index: 1000;
-                background: transparent;
-                backdrop-filter: none;
-                -webkit-backdrop-filter: none;
-                margin-left: -0.85rem;
-                margin-right: -0.85rem;
+                position: sticky; top: 0; z-index: 1000; background: transparent;
+                backdrop-filter: none; -webkit-backdrop-filter: none;
+                margin-left: -0.85rem; margin-right: -0.85rem;
                 padding: 0.85rem 0.85rem 0.75rem 0.85rem;
-                border-bottom: none;
-                box-shadow: none;
-                margin-bottom: 0.5rem;
-                flex-direction: column;
-                align-items: stretch;
-                gap: 10px;
+                border-bottom: none; box-shadow: none; margin-bottom: 0.5rem;
+                flex-direction: column; align-items: stretch; gap: 10px;
             } 
-            
-            .brand { 
-                justify-content: flex-start;
-                gap: 10px; 
-            }
+            .brand { justify-content: flex-start; gap: 10px; }
             .logo-icon { width: 34px; height: 34px; }
             .brand-text h1 { color: #ffffff; }
             .brand-text p { color: #e0e0e0; }
-            
-            .header-right {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                width: 100%;
-                gap: 10px;
-            }
-
-            .user-chip {
-                max-width: 72%;
-                overflow: hidden;
-            }
-
-            .dashboard-grid { 
-                grid-template-columns: 1fr; 
-                gap: 0.85rem; 
-            }
-            
-            .app-card { 
-                padding: 1rem; 
-                border-radius: 16px; 
-            }
-
+            .header-right { display: flex; align-items: center; justify-content: space-between; width: 100%; gap: 10px; }
+            .user-chip { max-width: 72%; overflow: hidden; }
+            .dashboard-grid { grid-template-columns: 1fr; gap: 0.85rem; }
+            .app-card { padding: 1rem; border-radius: 16px; }
             .card-header { margin-bottom: 0.65rem; }
             .icon-wrapper { width: 36px; height: 36px; border-radius: 10px; font-size: 0.95rem; }
             .status-badge { font-size: 0.68rem; padding: 3px 8px; }
             .card-title { font-size: 1rem; margin-bottom: 0.4rem; }
-            
-            .card-desc { 
-                font-size: 0.75rem; 
-                line-height: 1.4; 
-                margin-bottom: 0.6rem;
-            }
-            
-            .update-icon {
-                width: 18px;
-                height: 18px;
-                font-size: 0.55rem;
-            }
-            
-            .btn-launch { 
-                padding: 10px 12px; 
-                border-radius: 10px; 
-                font-size: 0.8rem; 
-            }
-            
+            .card-desc { font-size: 0.75rem; line-height: 1.4; margin-bottom: 0.6rem; }
+            .update-icon { width: 18px; height: 18px; font-size: 0.55rem; }
+            .btn-launch { padding: 10px 12px; border-radius: 10px; font-size: 0.8rem; }
             .ticker-container { margin-top: 0.75rem; padding: 6px 0; border-radius: 10px; }
             .ticker-item { font-size: 0.72rem; padding: 0 1rem; }
-            
             footer { padding: 0.5rem 0 0.2rem 0; font-size: 0.65rem; }
         }
 
-        /* ============================================ */
-        /* LOGIN GATE                                   */
-        /* ============================================ */
         #login-overlay {
-            position: fixed;
-            inset: 0;
-            z-index: 20000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 1.25rem;
-            background: var(--bg-body);
-            transition: opacity 0.35s ease;
+            position: fixed; inset: 0; z-index: 20000; display: flex;
+            align-items: center; justify-content: center; padding: 1.25rem;
+            background: var(--bg-body); transition: opacity 0.35s ease;
         }
-
-        #login-overlay::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: var(--bg-overlay);
-            z-index: 0;
-        }
-
-        #login-overlay.login-success {
-            opacity: 0;
-            pointer-events: none;
-        }
+        #login-overlay::before { content: ''; position: absolute; inset: 0; background: var(--bg-overlay); z-index: 0; }
+        #login-overlay.login-success { opacity: 0; pointer-events: none; }
 
         .login-card {
-            position: relative;
-            z-index: 1;
-            width: 100%;
-            max-width: 380px;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            box-shadow: var(--card-shadow);
-            border-radius: 22px;
-            padding: 2rem 1.75rem;
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            text-align: center;
+            position: relative; z-index: 1; width: 100%; max-width: 380px;
+            background: var(--card-bg); border: 1px solid var(--card-border); box-shadow: var(--card-shadow);
+            border-radius: 22px; padding: 2rem 1.75rem;
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); text-align: center;
         }
-
         .login-card .logo-icon { margin: 0 auto 0.85rem auto; width: 44px; height: 44px; }
-
         .login-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.25rem; }
         .login-subtitle { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 1.4rem; line-height: 1.4; }
-
         .login-field { text-align: left; margin-bottom: 1rem; }
-        .login-field label {
-            display: block;
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--text-muted);
-            margin-bottom: 0.35rem;
-        }
-
+        .login-field label { display: block; font-size: 0.75rem; font-weight: 600; color: var(--text-muted); margin-bottom: 0.35rem; }
         .login-input-wrap { position: relative; display: flex; align-items: center; }
 
         .login-input {
-            width: 100%;
-            padding: 11px 40px 11px 13px;
-            border-radius: 12px;
-            border: 1px solid var(--card-border);
-            background: var(--icon-bg);
-            color: var(--text-main);
-            font-size: 0.9rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            outline: none;
+            width: 100%; padding: 11px 40px 11px 13px; border-radius: 12px;
+            border: 1px solid var(--card-border); background: var(--icon-bg); color: var(--text-main);
+            font-size: 0.9rem; font-weight: 600; letter-spacing: 0.5px; outline: none;
         }
         .login-input:focus { border-color: var(--primary-purple); }
 
         .login-toggle-visibility {
-            position: absolute;
-            right: 12px;
-            background: none;
-            border: none;
-            color: var(--text-muted);
-            cursor: pointer;
-            font-size: 0.88rem;
-            padding: 4px;
+            position: absolute; right: 12px; background: none; border: none;
+            color: var(--text-muted); cursor: pointer; font-size: 0.88rem; padding: 4px;
         }
 
-        .login-error {
-            display: none;
-            text-align: left;
-            color: var(--error-color);
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin: -0.3rem 0 0.8rem 0;
-        }
+        .login-error { display: none; text-align: left; color: var(--error-color); font-size: 0.75rem; font-weight: 600; margin: -0.3rem 0 0.8rem 0; }
 
         .login-btn {
             display: flex; align-items: center; justify-content: center; gap: 8px;
             width: 100%; padding: 11px; border-radius: 12px;
             background: linear-gradient(135deg, var(--btn-grad-start), var(--btn-grad-end));
             color: white; font-weight: 600; font-size: 0.9rem;
-            border: 1px solid rgba(255,255,255,0.15);
-            box-shadow: 0 4px 15px var(--btn-shadow);
-            cursor: pointer;
+            border: 1px solid rgba(255,255,255,0.15); box-shadow: 0 4px 15px var(--btn-shadow); cursor: pointer;
         }
         .login-btn:hover { filter: brightness(1.1); }
         .login-btn:disabled { opacity: 0.6; cursor: not-allowed; }
-
         .login-footnote { margin-top: 1.1rem; font-size: 0.68rem; color: var(--text-muted); }
 
         .user-chip {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 50px;
-            padding: 5px 12px 5px 6px;
-            backdrop-filter: blur(10px);
-            min-width: 0;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            display: flex; align-items: center; gap: 8px;
+            background: var(--card-bg); border: 1px solid var(--card-border);
+            border-radius: 50px; padding: 5px 12px 5px 6px;
+            backdrop-filter: blur(10px); min-width: 0; cursor: pointer; transition: all 0.3s ease;
         }
-
-        .user-chip:hover {
-            transform: scale(1.03);
-            border-color: rgba(155, 93, 229, 0.5);
-        }
+        .user-chip:hover { transform: scale(1.03); border-color: rgba(155, 93, 229, 0.5); }
 
         @keyframes chipShake {
             10%, 90% { transform: translateX(-2px); }
@@ -690,61 +310,19 @@
         .user-chip.shake { animation: chipShake 0.4s; }
 
         .user-chip .avatar {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
+            width: 30px; height: 30px; border-radius: 50%;
             background: linear-gradient(135deg, var(--btn-grad-start), var(--btn-grad-end));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: 700;
-            font-size: 0.78rem;
-            flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-weight: 700; font-size: 0.78rem; flex-shrink: 0;
         }
-
-        .user-chip .u-info {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .user-chip .u-name {
-            font-size: 0.78rem;
-            font-weight: 700;
-            color: var(--text-main);
-            line-height: 1.2;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-        }
-
-        .user-chip .u-sub {
-            font-size: 0.65rem;
-            color: var(--text-muted);
-            line-height: 1.2;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            overflow: hidden;
-            white-space: nowrap;
-        }
-
-        .user-chip .u-pos {
-            font-size: 0.65rem;
-            color: var(--text-muted);
-            white-space: nowrap;
-        }
-
+        .user-chip .u-info { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .user-chip .u-name { font-size: 0.78rem; font-weight: 700; color: var(--text-main); line-height: 1.2; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .user-chip .u-sub { font-size: 0.65rem; color: var(--text-muted); line-height: 1.2; display: flex; align-items: center; gap: 4px; overflow: hidden; white-space: nowrap; }
+        .user-chip .u-pos { font-size: 0.65rem; color: var(--text-muted); white-space: nowrap; }
         .user-chip .u-loc {
-            font-size: 0.6rem;
-            color: var(--badge-text);
-            background: var(--badge-bg);
-            border: 1px solid var(--badge-border);
-            padding: 1px 5px;
-            border-radius: 6px;
-            font-weight: 600;
-            white-space: nowrap;
+            font-size: 0.6rem; color: var(--badge-text); background: var(--badge-bg);
+            border: 1px solid var(--badge-border); padding: 1px 5px; border-radius: 6px;
+            font-weight: 600; white-space: nowrap;
         }
 
         @keyframes loginShake {
@@ -755,46 +333,25 @@
         }
         .login-card.shake { animation: loginShake 0.5s; }
 
-        /* WELCOME TOAST */
         #welcome-toast {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%) translateY(-20px);
-            z-index: 20001;
-            background: var(--card-bg);
-            border: 1px solid var(--badge-border);
-            color: var(--text-main);
-            padding: 10px 18px;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            box-shadow: var(--card-shadow);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.35s ease, transform 0.35s ease;
-            max-width: 90vw;
-            text-align: center;
+            position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-20px);
+            z-index: 20001; background: var(--card-bg); border: 1px solid var(--badge-border);
+            color: var(--text-main); padding: 10px 18px; border-radius: 12px;
+            font-size: 0.8rem; font-weight: 600; box-shadow: var(--card-shadow);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            opacity: 0; pointer-events: none; transition: opacity 0.35s ease, transform 0.35s ease;
+            max-width: 90vw; text-align: center;
         }
-        #welcome-toast.visible {
-            opacity: 1;
-            transform: translateX(-50%) translateY(0);
-        }
+        #welcome-toast.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
         #welcome-toast i { color: var(--update-icon-color); margin-right: 6px; }
 
     </style>
 </head>
 <body oncontextmenu="return false;" onkeydown="return blockShortcuts(event);" ondragstart="return false;">
 
-    <!-- Global Tooltip Element -->
     <div id="global-tooltip" class="global-tooltip"></div>
-
-    <!-- Welcome Toast -->
     <div id="welcome-toast"></div>
 
-    <!-- Login Gate -->
     <div id="login-overlay">
         <div class="login-card" id="login-card">
             <div class="logo-icon">
@@ -861,7 +418,6 @@
 
         <main class="dashboard-grid">
 
-            <!-- Card 1: M-Dashboard -->
             <article class="app-card card-dashboard has-update">
                 <div class="card-header">
                     <div class="icon-wrapper"><i class="fas fa-layer-group"></i></div>
@@ -888,7 +444,6 @@
                 </button>
             </article>
 
-            <!-- Card 2: M-Leading Indicator -->
             <article class="app-card card-indicator has-update">
                 <div class="card-header">
                     <div class="icon-wrapper"><i class="fas fa-chart-line"></i></div>
@@ -915,7 +470,6 @@
                 </button>
             </article>
             
-            <!-- Card 3: M-Direct -->
             <article class="app-card card-direct has-update">
                 <div class="card-header">
                     <div class="icon-wrapper"><i class="fas fa-user-check"></i></div>
@@ -942,7 +496,6 @@
                 </button>
             </article>
 
-            <!-- Card 4: PBT -->
             <article class="app-card card-pbt has-update">
                 <div class="card-header">
                     <div class="icon-wrapper"><i class="fas fa-chart-line"></i></div>
@@ -971,7 +524,6 @@
 
         </main>
 
-        <!-- Scrolling Ticker -->
         <div class="ticker-container">
             <div class="ticker-wrapper">
                 <div class="ticker-content">
@@ -992,7 +544,11 @@
     </div>
 
     <script>
-        // Navigasi tombol tanpa menampilkan URL di status bar browser
+        // Navigasi tombol tanpa menampilkan URL di status bar browser.
+        // Sebelum membuka link aplikasi (mdashbmi, mleadingbmi, mdirectbmi, mpbtbmi, dst),
+        // pastikan dulu masih ada sesi login tersimpan di localStorage.
+        // Jika sesi sudah dihapus (misalnya setelah klik Logout), user WAJIB login ulang
+        // di portal ini (bmisumatera.vercel.app) sebelum bisa membuka aplikasi lain.
         document.querySelectorAll('.btn-launch').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -1004,13 +560,17 @@
                 let finalUrl = targetUrl;
 
                 if (needsAuth) {
-                    // Kirim NIK user yang sedang login ke aplikasi tujuan
-                    // supaya aplikasi tujuan tahu user ini sudah login di sini.
                     const nik = localStorage.getItem('saved_user_nik');
-                    if (nik) {
-                        const sep = targetUrl.includes('?') ? '&' : '?';
-                        finalUrl = `${targetUrl}${sep}auth_nik=${encodeURIComponent(nik)}&auth_ts=${Date.now()}`;
+
+                    // Tidak ada sesi (belum login / sudah logout) -> jangan buka link,
+                    // paksa login dulu di portal ini.
+                    if (!nik) {
+                        forceShowLogin();
+                        return;
                     }
+
+                    const sep = targetUrl.includes('?') ? '&' : '?';
+                    finalUrl = `${targetUrl}${sep}auth_nik=${encodeURIComponent(nik)}&auth_ts=${Date.now()}`;
                 }
 
                 window.open(finalUrl, '_blank', 'noopener,noreferrer');
@@ -1032,7 +592,6 @@
 
         themeBtn.addEventListener('click', () => {
             body.classList.toggle('light-mode');
-            
             if (body.classList.contains('light-mode')) {
                 themeIcon.classList.remove('fa-sun');
                 themeIcon.classList.add('fa-moon');
@@ -1047,15 +606,8 @@
         const updateIcons = document.querySelectorAll('.update-icon');
 
         updateIcons.forEach(icon => {
-            icon.addEventListener('mouseenter', (e) => {
-                showTooltip(icon);
-            });
-
-            icon.addEventListener('mouseleave', () => {
-                tooltip.classList.remove('visible');
-            });
-
-            // Touch support for mobile devices
+            icon.addEventListener('mouseenter', (e) => { showTooltip(icon); });
+            icon.addEventListener('mouseleave', () => { tooltip.classList.remove('visible'); });
             icon.addEventListener('touchstart', (e) => {
                 e.preventDefault();
                 showTooltip(icon);
@@ -1069,7 +621,6 @@
             tooltip.classList.add('visible');
             
             const rect = icon.getBoundingClientRect();
-            
             let left = rect.left + (rect.width / 2) - (tooltip.offsetWidth / 2);
             let top = rect.top - tooltip.offsetHeight - 8;
             
@@ -1077,10 +628,7 @@
             if (left + tooltip.offsetWidth > window.innerWidth - 10) {
                 left = window.innerWidth - tooltip.offsetWidth - 10;
             }
-            
-            if (top < 10) {
-                top = rect.bottom + 8;
-            }
+            if (top < 10) { top = rect.bottom + 8; }
             
             tooltip.style.left = left + 'px';
             tooltip.style.top = top + 'px';
@@ -1115,7 +663,6 @@
                 userList = Array.isArray(data.user_list) ? data.user_list : [];
                 userListReady = true;
 
-                // Cek apakah ada sesi login yang tersimpan di localStorage saat halaman dibuka/direfresh
                 checkSavedSession();
             } catch (err) {
                 loginError.textContent = 'Failed to load user data (user_list.json). Report to administrator.';
@@ -1123,18 +670,19 @@
             }
         }
 
-        // Fungsi untuk langsung masuk jika NIK tersimpan di localStorage
         function checkSavedSession() {
             const savedNik = localStorage.getItem('saved_user_nik');
             if (savedNik) {
                 const user = userList.find(u => String(u.nik).trim() === String(savedNik).trim());
                 if (user) {
-                    executeLogin(user, false); // Login tanpa menampilkan toast welcome berulang jika direfresh
+                    executeLogin(user, false);
+                } else {
+                    // NIK tersimpan sudah tidak valid (misal user dihapus dari daftar) -> bersihkan sesi
+                    localStorage.removeItem('saved_user_nik');
                 }
             }
         }
 
-        // Fungsi untuk memproses login UI
         function executeLogin(user, showToast = true) {
             activeUser = user;
             loginOverlay.classList.add('login-success');
@@ -1142,7 +690,6 @@
                 loginOverlay.style.display = 'none';
                 appContainer.style.display = 'flex';
                 
-                // Set data ke User Chip di header
                 const userChip = document.getElementById('user-chip');
                 const userNameChip = document.getElementById('user-name-chip');
                 const userPosChip = document.getElementById('user-pos-chip');
@@ -1200,7 +747,6 @@
             const user = userList.find(u => String(u.nik).trim() === nik);
 
             if (user) {
-                // Simpan NIK ke localStorage agar tidak perlu login ulang saat di-refresh
                 localStorage.setItem('saved_user_nik', user.nik);
                 executeLogin(user, true);
             } else {
@@ -1213,32 +759,39 @@
             }
         });
 
+        // Logout: hapus sesi tersimpan di localStorage supaya user WAJIB login ulang
+        // baik saat kembali ke portal ini maupun saat mau membuka aplikasi lain
+        // (mdashbmi, mleadingbmi, mdirectbmi, mpbtbmi) dari bmisumatera.vercel.app.
         logoutBtn.addEventListener('click', function () {
-            // Hapus sesi tersimpan di localStorage
+            performLogout();
+        });
+
+        function performLogout() {
             localStorage.removeItem('saved_user_nik');
             activeUser = null;
 
-            // Reset tampilan UI
             document.getElementById('user-chip').style.display = 'none';
             if (logoutBtn) logoutBtn.style.display = 'none';
             nikInput.value = '';
             loginError.style.display = 'none';
+
+            forceShowLogin();
+        }
+
+        // Menampilkan kembali overlay login. Dipakai saat logout, maupun saat
+        // user mencoba membuka salah satu aplikasi tanpa sesi login yang valid.
+        function forceShowLogin() {
             appContainer.style.display = 'none';
-            
-            // Tampilkan kembali login overlay
             loginOverlay.style.display = 'flex';
             loginOverlay.classList.remove('login-success');
-            
             setTimeout(() => nikInput.focus(), 100);
-        });
+        }
 
-        // KLIK NAMA USER: buka halaman manajemen user (khusus admin)
         const userChip = document.getElementById('user-chip');
         userChip.addEventListener('click', () => {
             if (activeUser && String(activeUser.admin).toUpperCase() === 'TRUE') {
                 window.location.href = 'user-management.html';
             } else {
-                // Bukan admin: beri feedback visual, tidak menampilkan halaman
                 userChip.classList.add('shake');
                 setTimeout(() => userChip.classList.remove('shake'), 400);
             }
@@ -1246,7 +799,6 @@
 
         function showWelcomeToast(user) {
             welcomeToast.innerHTML = `<div><i class="fas fa-circle-check"></i> Welcome aboard,</div><div>${user.nama} - ${user.posisi}</div>`;
-            
             welcomeToast.classList.add('visible');
             setTimeout(() => {
                 welcomeToast.classList.remove('visible');
