@@ -1130,6 +1130,9 @@
                 const user = userList.find(u => String(u.nik).trim() === String(savedNik).trim());
                 if (user) {
                     executeLogin(user, false); // Login tanpa menampilkan toast welcome berulang jika direfresh
+                } else {
+                    // NIK tersimpan tidak valid lagi (mis. dihapus dari user_list) -> bersihkan sesi
+                    localStorage.removeItem('saved_user_nik');
                 }
             }
         }
@@ -1214,8 +1217,12 @@
         });
 
         logoutBtn.addEventListener('click', function () {
-            // Hapus sesi tersimpan di localStorage
-            localStorage.removeItem('saved_user_nik');
+            // Hapus SEMUA data sesi login yang tersimpan di local storage (bukan hanya key
+            // saved_user_nik saja), agar begitu logout, user WAJIB login ulang dengan NIK
+            // sebelum bisa masuk ke portal ini maupun membuka aplikasi tujuan
+            // (mdashbmi.vercel.app, mleadingbmi.vercel.app, mdirectbmi.vercel.app, mpbtbmi.vercel.app)
+            // yang auth_nik-nya diambil dari sesi portal ini.
+            localStorage.clear();
             activeUser = null;
 
             // Reset tampilan UI
