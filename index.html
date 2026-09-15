@@ -698,7 +698,7 @@
                 const userAvatar = document.getElementById('user-avatar');
                 
                 const locationVal = user.lokasi || user.cabang || user.unit || user.location || '';
-
+        
                 userNameChip.textContent = user.nama;
                 userPosChip.textContent = user.posisi;
                 
@@ -710,8 +710,21 @@
                     userLocChip.style.display = 'none';
                     if (userLocSep) userLocSep.style.display = 'none';
                 }
-
-                userAvatar.textContent = user.nama ? user.nama.charAt(0).toUpperCase() : 'U';
+        
+                // Logika pembuatan 2 huruf inisial
+                if (user.nama) {
+                    const words = user.nama.trim().split(/\s+/).filter(Boolean);
+                    if (words.length >= 2) {
+                        userAvatar.textContent = (words[0][0] + words[1][0]).toUpperCase();
+                    } else if (words.length === 1) {
+                        userAvatar.textContent = words[0].slice(0, 2).toUpperCase();
+                    } else {
+                        userAvatar.textContent = 'U';
+                    }
+                } else {
+                    userAvatar.textContent = 'U';
+                }
+        
                 userChip.style.display = 'flex';
                 if (logoutBtn) logoutBtn.style.display = 'flex';
                 
