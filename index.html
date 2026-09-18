@@ -208,13 +208,39 @@
         .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; }
         
         .icon-wrapper {
-            width: 42px; height: 42px; border-radius: 12px;
-            display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
-            background: var(--icon-bg); color: var(--icon-color);
-            border: 1px solid rgba(255,255,255,0.15); backdrop-filter: blur(10px);
-            transition: all 0.3s ease; flex-shrink: 0;
+            width: 44px; 
+            height: 44px; 
+            border-radius: 12px;
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 1.25rem; /* Ukuran ikon sedikit diperbesar agar lebih tajam */
+            font-weight: 700;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Bayangan agar ikon terangkat */
+            flex-shrink: 0;
+            border: none; /* Menghilangkan border tipis yang membuat buram */
         }
 
+        .card-dashboard .icon-wrapper { 
+            background: #ef4444 !important; /* Merah Solid */
+            color: #ffffff !important; 
+        }
+        
+        .card-indicator .icon-wrapper { 
+            background: #f59e0b !important; /* Amber / Kuning Solid */
+            color: #ffffff !important; 
+        }
+        
+        .card-direct .icon-wrapper { 
+            background: #3b82f6 !important; /* Biru Solid */
+            color: #ffffff !important; 
+        }
+        
+        .card-pbt .icon-wrapper { 
+            background: #8b5cf6 !important; /* Ungu Solid */
+            color: #ffffff !important; 
+        }
+        
         .badge-container { display: flex; align-items: center; gap: 6px; }
         .status-badge {
             font-size: 0.72rem; padding: 3px 10px; border-radius: 12px;
