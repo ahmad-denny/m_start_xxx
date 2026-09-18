@@ -459,6 +459,13 @@
         #welcome-toast.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
         #welcome-toast i { color: var(--update-icon-color); margin-right: 6px; }
 
+        /* Mencegah teks diblok/diseleksi di seluruh halaman */
+        body {
+          -webkit-user-select: none; /* Safari */
+          -ms-user-select: none;     /* IE 10+ / Edge */
+          user-select: none;         /* Standard Syntax */
+        }
+
     </style>
 </head>
 <body oncontextmenu="return false;" onkeydown="return blockShortcuts(event);" ondragstart="return false;">
@@ -922,6 +929,22 @@
             const targetUrl = this.getAttribute('data-url');
             window.location.replace(targetUrl);
         });
+
+        // 1. Mematikan fitur Klik Kanan
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+          });
+        
+          // 2. Mematikan Shortcut keyboard untuk Inspeksi / Copy (Ctrl+C, Ctrl+U, F12, Ctrl+Shift+I)
+        document.addEventListener('keydown', function(e) {
+            if (
+              e.key === 'F12' || 
+              (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || 
+              (e.ctrlKey && (e.key === 'u' || e.key === 'U' || e.key === 'c' || e.key === 'C' || e.key === 's' || e.key === 'S'))
+            ) {
+              e.preventDefault();
+            }
+         });        
         
     </script>
 
