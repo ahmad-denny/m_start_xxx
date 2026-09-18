@@ -345,44 +345,49 @@
         #welcome-toast.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
         #welcome-toast i { color: var(--update-icon-color); margin-right: 6px; }
 
-        /* Styling Kartu Utama */
+/* Styling Kartu Utama (Tanpa background-color solid agar gambar terlihat) */
         .app-card {
             position: relative;
             overflow: hidden;
-            border-radius: 16px;
-            padding: 24px;
+            border-radius: 20px;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 1;
             color: #ffffff;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.15);
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--card-border);
+            /* HAPUS background-color agar gambar di background tidak tertutup */
         }
-        
-        /* Pseudo-element untuk Background Gambar + Efek Blur */
+
+        /* Pseudo-element untuk Gambar Background + Blur */
         .app-card::before {
             content: '';
             position: absolute;
-            top: -10px;
-            left: -10px;
-            right: -10px;
-            bottom: -10px;
+            inset: -10px; /* Lebar lebih sedikit agar blur tidak memotong pinggir */
             background-image: var(--bg-image);
             background-size: cover;
             background-position: center;
-            filter: blur(8px) brightness(0.5); /* Efek Blur & Redup agar teks jelas */
+            filter: blur(8px) brightness(0.5); /* Efek blur & menggelapkan gambar */
             z-index: -2;
-            transition: transform 0.3s ease;
+            transition: transform 0.4s ease;
         }
-        
-        /* Layer gelap transparan agar teks terlihat semakin tajam */
+
+        /* Lapisan Gelap Gelassmorphism (Overlay) */
         .app-card::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(15, 23, 42, 0.65); /* Lapisan gelap transparan */
+            inset: 0;
+            background: rgba(15, 8, 30, 0.65); /* Overlay gelap agar teks tetap jelas */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             z-index: -1;
+        }
+
+        /* Hover Efek Zoom Lembut */
+        .app-card:hover::before {
+            transform: scale(1.08);
         }
         
         /* Penyesuaian Font dan Keterbacaan Teks */
@@ -482,7 +487,7 @@
         <main class="dashboard-grid">
         
             <!-- Card 1: M-Dashboard -->
-            <article class="app-card card-dashboard has-update" style="--bg-image: url('M-Dashboard.jpg');">
+            <article class="app-card card-dashboard has-update" style="--bg-image: url('img/M-Dashboard.jpg');">
                 <div class="card-header">
                     <div class="icon-wrapper"><i class="fas fa-layer-group"></i></div>
                     <div class="badge-container">
@@ -509,7 +514,7 @@
             </article>
         
             <!-- Card 2: M-Leading Indicator -->
-            <article class="app-card card-indicator has-update" style="--bg-image: url('M-Leading.jpg');">
+            <article class="app-card card-indicator has-update" style="--bg-image: url('img/M-Leading.jpg');">
                 <div class="card-header">
                     <div class="icon-wrapper"><i class="fas fa-chart-line"></i></div>
                     <div class="badge-container">
@@ -536,7 +541,7 @@
             </article>
             
             <!-- Card 3: M-Direct -->
-            <article class="app-card card-direct has-update" style="--bg-image: url('M-Direct.jpg');">
+            <article class="app-card card-direct has-update" style="--bg-image: url('img/M-Direct.jpg');">
                 <div class="card-header">
                     <div class="icon-wrapper"><i class="fas fa-user-check"></i></div>
                     <div class="badge-container">
@@ -563,7 +568,7 @@
             </article>
         
             <!-- Card 4: PBT After HOCA -->
-            <article class="app-card card-pbt has-update" style="--bg-image: url('M-PBT.jpg');">
+            <article class="app-card card-pbt has-update" style="--bg-image: url('img/M-PBT.jpg');">
                 <div class="card-header">
                     <div class="icon-wrapper"><i class="fas fa-chart-line"></i></div>
                     <div class="badge-container">
