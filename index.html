@@ -559,7 +559,7 @@
                     4. Select & Unselect legend to filter chart<br>
                     5. Pick tab between Financing, Funding, Priority, Hajj, MDIN, QRIS & NPF
                 </p>
-                <button type="button" data-url="https://mdashbmi.vercel.app/" data-auth="true" class="btn-launch" onclick="window.open(this.dataset.url, '_blank'); window.close();">
+                <button type="button" data-url="https://mdashbmi.vercel.app/index.html" data-auth="true" class="btn-launch">
                     Open Now <i class="fas fa-arrow-right"></i>
                 </button>
             </article>
@@ -585,7 +585,7 @@
                     4. Display Ranking Performance (Branch or Co-Branch)<br>
                     5. Table contains detailed data breakdown on Web version
                 </p>
-                <button type="button" data-url="https://mleadingbmi.vercel.app/" data-auth="true" class="btn-launch" onclick="window.open(this.dataset.url, '_blank'); window.close();">
+                <button type="button" data-url="https://mleadingbmi.vercel.app/index.html" data-auth="true" class="btn-launch">
                     Open Now <i class="fas fa-arrow-right"></i>
                 </button>                
             </article>
@@ -611,7 +611,7 @@
                     4. Display Chart Monthly Progress M-Direct<br>
                     5. Table contains detailed data breakdown
                 </p>
-                <button type="button" data-url="https://mdirectbmi.vercel.app/" data-auth="true" class="btn-launch" onclick="window.open(this.dataset.url, '_blank'); window.close();">
+                <button type="button" data-url="https://mdirectbmi.vercel.app/index.html" data-auth="true" class="btn-launch">
                     Open Now <i class="fas fa-arrow-right"></i>
                 </button>                
             </article>
@@ -637,7 +637,7 @@
                     4. Optimized for Mobile & Web<br>
                     5. Table contains detailed data breakdown
                 </p>
-                <button type="button" data-url="https://mpbtbmi.vercel.app/" data-auth="true" class="btn-launch" onclick="window.open(this.dataset.url, '_blank'); window.close();">
+                <button type="button" data-url="https://mpbtbmi.vercel.app/index.html" data-auth="true" class="btn-launch">
                     Open Now <i class="fas fa-arrow-right"></i>
                 </button>                
                 
@@ -665,32 +665,6 @@
     </div>
 
     <script>
-        document.querySelectorAll('.btn-launch').forEach(btn => {
-            btn.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetUrl = this.getAttribute('data-url');
-                const needsAuth = this.getAttribute('data-auth') === 'true';
-
-                if (!targetUrl) return;
-
-                let finalUrl = targetUrl;
-
-                if (needsAuth) {
-                    const nik = localStorage.getItem('saved_user_nik');
-
-                    if (!nik) {
-                        forceShowLogin();
-                        return;
-                    }
-
-                    const sep = targetUrl.includes('?') ? '&' : '?';
-                    finalUrl = `${targetUrl}${sep}auth_nik=${encodeURIComponent(nik)}&auth_ts=${Date.now()}`;
-                }
-
-                window.open(finalUrl, '_blank', 'noopener,noreferrer');
-            });
-        });
-
         // Theme Toggle Logic
         const themeBtn = document.getElementById('theme-btn');
         const themeIcon = themeBtn.querySelector('i');
@@ -925,9 +899,32 @@
             }, 4500);
         }
 
-        document.querySelector('.btn-launch').addEventListener('click', function() {
-            const targetUrl = this.getAttribute('data-url');
-            window.location.replace(targetUrl);
+        // Satu-satunya handler untuk tombol "Open Now" — buka tab baru
+        // membawa parameter auth (auth_nik & auth_ts) ke aplikasi tujuan.
+        document.querySelectorAll('.btn-launch').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetUrl = this.getAttribute('data-url');
+                const needsAuth = this.getAttribute('data-auth') === 'true';
+
+                if (!targetUrl) return;
+
+                let finalUrl = targetUrl;
+
+                if (needsAuth) {
+                    const nik = localStorage.getItem('saved_user_nik');
+
+                    if (!nik) {
+                        forceShowLogin();
+                        return;
+                    }
+
+                    const sep = targetUrl.includes('?') ? '&' : '?';
+                    finalUrl = `${targetUrl}${sep}auth_nik=${encodeURIComponent(nik)}&auth_ts=${Date.now()}`;
+                }
+
+                window.open(finalUrl, '_blank', 'noopener,noreferrer');
+            });
         });
 
         // 1. Mematikan fitur Klik Kanan
