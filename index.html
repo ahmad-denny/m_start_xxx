@@ -127,10 +127,20 @@
 
         /* Style Card Utama */
         .app-card {
-            background-color: transparent !important; /* Hilangkan background dasar card */
+            border: 1px solid var(--card-border); 
+            box-shadow: var(--card-shadow); 
+            border-radius: 20px;
+            padding: 1.25rem; 
+            display: flex; 
+            flex-direction: column;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+            position: relative; 
+            overflow: hidden; 
+            background-color: transparent;
+            isolation: isolate;
         }
         
-        /* Layer Gambar Background + Blur (Di belakang konten) */
+        /* Layer Gambar Background + Blur Normal */
         .app-card::after {
             content: '';
             position: absolute;
@@ -138,31 +148,40 @@
             background-image: var(--card-img);
             background-size: cover;
             background-position: center;
-            filter: blur(10px); /* Blur hanya untuk gambar latar */
-            transform: scale(1.15); /* Mencegah garis putih di pinggiran kartu */
+            filter: blur(10px); /* Blur awal */
+            transform: scale(1.15); 
             z-index: -2;
-            transition: filter 0.3s ease, transform 0.3s ease;
+            transition: filter 0.4s ease, transform 0.4s ease;
         }
         
-        /* Layer Overlay Gelap/Terang (Membuat teks tajam & kontras tinggi) */
-        .app-card:hover::before {
-            background: rgba(0, 0, 0, 0.1); /* Tipiskan overlay (atur ke 0 untuk 100% tanpa lapisan) */
-        }        
-
-        .card-header, .card-title, .card-desc, .btn-launch { 
-            position: relative; 
-            z-index: 1; 
+        /* Layer Lapisan Kontras Agar Teks Jelas Terbaca */
+        .app-card::before {
+            content: ''; 
+            position: absolute; 
+            inset: 0;
+            background: rgba(255, 255, 255, 0.85); /* Lapisan putih semi-transparan untuk Light Mode */
+            z-index: -1; 
+            pointer-events: none;
+            transition: background 0.4s ease;
         }
         
-        .app-card:hover { 
-            transform: translateY(-4px); 
-            box-shadow: var(--card-hover-shadow); 
-            border-color: rgba(155, 93, 229, 0.5); 
+        /* Lapisan Khusus Dark Mode (Ganti ke hitam transparan jika Dark Mode aktif) */
+        body:not(.light-mode) .app-card::before {
+            background: rgba(15, 8, 30, 0.75); 
         }
         
+        /* Efek Saat HOVER (Gambar menjadi tajam/real) */
         .app-card:hover::after {
-            filter: blur(0px); /* Gambar murni tajam */
+            filter: blur(0px); /* Gambar murni tajam / real */
             transform: scale(1);
+        }
+        
+        .app-card:hover::before {
+            background: rgba(255, 255, 255, 0.65); /* Sedikit diperhalus saat hover agar gambar lebih kelihatan */
+        }
+        
+        body:not(.light-mode) .app-card:hover::before {
+            background: rgba(15, 8, 30, 0.55);
         }
         
         /* Mapping Gambar untuk Setiap Kartu */
