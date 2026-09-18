@@ -345,6 +345,70 @@
         #welcome-toast.visible { opacity: 1; transform: translateX(-50%) translateY(0); }
         #welcome-toast i { color: var(--update-icon-color); margin-right: 6px; }
 
+        /* Styling Kartu Utama */
+        .app-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            padding: 24px;
+            z-index: 1;
+            color: #ffffff;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        
+        /* Pseudo-element untuk Background Gambar + Efek Blur */
+        .app-card::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background-image: var(--bg-image);
+            background-size: cover;
+            background-position: center;
+            filter: blur(8px) brightness(0.5); /* Efek Blur & Redup agar teks jelas */
+            z-index: -2;
+            transition: transform 0.3s ease;
+        }
+        
+        /* Layer gelap transparan agar teks terlihat semakin tajam */
+        .app-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(15, 23, 42, 0.65); /* Lapisan gelap transparan */
+            z-index: -1;
+        }
+        
+        /* Penyesuaian Font dan Keterbacaan Teks */
+        .card-title {
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+        }
+        
+        .card-desc {
+            color: #f1f5f9;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+        }
+        
+        .card-desc b {
+            color: #38bdf8; /* Warna highlight untuk teks tebal 'Feature:' */
+        }
+        
+        /* Hover Efek Zoom Lembut */
+        .app-card:hover::before {
+            transform: scale(1.05);
+        }
     </style>
 </head>
 <body oncontextmenu="return false;" onkeydown="return blockShortcuts(event);" ondragstart="return false;">
@@ -416,12 +480,13 @@
         </header>
 
         <main class="dashboard-grid">
-
-            <article class="app-card card-dashboard has-update">
+        
+            <!-- Card 1: M-Dashboard -->
+            <article class="app-card card-dashboard has-update" style="--bg-image: url('img/M-Dashboard.png');">
                 <div class="card-header">
                     <div class="icon-wrapper"><i class="fas fa-layer-group"></i></div>
                     <div class="badge-container">
-                        <div class="update-icon" data-update-date="Updated: 16 September 2026">
+                        <div class="update-icon" data-update-date="Updated: 14 September 2026">
                             <i class="fas fa-sync-alt"></i>
                         </div>
                         <span class="status-badge">Dashboard</span>
@@ -442,12 +507,13 @@
                     Open Now <i class="fas fa-arrow-right"></i>
                 </button>
             </article>
-
-            <article class="app-card card-indicator has-update">
+        
+            <!-- Card 2: M-Leading Indicator -->
+            <article class="app-card card-indicator has-update" style="--bg-image: url('img/M-Leading.png');">
                 <div class="card-header">
                     <div class="icon-wrapper"><i class="fas fa-chart-line"></i></div>
                     <div class="badge-container">
-                        <div class="update-icon" data-update-date="Updated: 16 September 2026">
+                        <div class="update-icon" data-update-date="Updated: 14 September 2026">
                             <i class="fas fa-sync-alt"></i>
                         </div>
                         <span class="status-badge">Leading Indicator</span>
@@ -469,7 +535,8 @@
                 </button>
             </article>
             
-            <article class="app-card card-direct has-update">
+            <!-- Card 3: M-Direct -->
+            <article class="app-card card-direct has-update" style="--bg-image: url('img/M-Direct.png');">
                 <div class="card-header">
                     <div class="icon-wrapper"><i class="fas fa-user-check"></i></div>
                     <div class="badge-container">
@@ -494,8 +561,9 @@
                     Open Now <i class="fas fa-arrow-right"></i>
                 </button>
             </article>
-
-            <article class="app-card card-pbt has-update">
+        
+            <!-- Card 4: PBT After HOCA -->
+            <article class="app-card card-pbt has-update" style="--bg-image: url('img/M-PBT.png');">
                 <div class="card-header">
                     <div class="icon-wrapper"><i class="fas fa-chart-line"></i></div>
                     <div class="badge-container">
@@ -520,9 +588,9 @@
                     Open Now <i class="fas fa-arrow-right"></i>
                 </button>
             </article>
-
+        
         </main>
-
+        
         <div class="ticker-container">
             <div class="ticker-wrapper">
                 <div class="ticker-content">
