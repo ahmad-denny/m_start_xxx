@@ -19,10 +19,11 @@
             --text-main: #ffffff;
             --text-muted: #d8b4fe;
             --card-bg: rgba(15, 8, 30, 0.85);
+            --card-overlay: rgba(12, 6, 26, 0.78); /* Overlay untuk keterbacaan teks di dark mode */
             --card-border: rgba(255, 255, 255, 0.12);
             --card-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
             --card-hover-shadow: 0 20px 40px -10px rgba(101, 28, 236, 0.4);
-            --icon-bg: rgba(255, 255, 255, 0.08);
+            --icon-bg: rgba(255, 255, 255, 0.12);
             --icon-color: #fff;
             --badge-bg: rgba(34, 197, 94, 0.15);
             --badge-text: #4ade80;
@@ -42,8 +43,9 @@
             --bg-body: url('img/bg-web-light.png') center center / cover no-repeat fixed;
             --bg-overlay: transparent;
             --text-main: #1e293b;
-            --text-muted: #64748b;
+            --text-muted: #475569;
             --card-bg: rgba(255, 255, 255, 0.92);
+            --card-overlay: rgba(255, 255, 255, 0.82); /* Overlay untuk keterbacaan teks di light mode */
             --card-border: rgba(255, 255, 255, 1);
             --card-shadow: 0 10px 30px -5px rgba(100, 65, 165, 0.1);
             --card-hover-shadow: 0 20px 40px -5px rgba(100, 65, 165, 0.2);
@@ -123,26 +125,63 @@
 
         .dashboard-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; flex: 1; }
 
+        /* Style Card & Background Blur */
         .app-card {
             border: 1px solid var(--card-border); box-shadow: var(--card-shadow); border-radius: 20px;
             padding: 1.25rem; display: flex; flex-direction: column;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; 
-            background-color: var(--card-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            background-color: var(--card-bg);
+            isolation: isolate;
         }
+
+        /* Layer Background Blur */
+        .app-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: var(--card-img);
+            background-size: cover;
+            background-position: center;
+            filter: blur(8px);
+            transform: scale(1.1); /* Mencegah area pinggir blur terlihat terpotong */
+            z-index: -2;
+            transition: filter 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Layer Overlay Kontras (agar teks terbaca jelas) */
         .app-card::before {
             content: ''; position: absolute; inset: 0;
-            background: linear-gradient(to bottom, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.05) 100%);
-            z-index: 0; pointer-events: none; opacity: 0.5;
+            background: var(--card-overlay);
+            z-index: -1; pointer-events: none; opacity: 1;
+            transition: background 0.3s ease;
         }
+
         .card-header, .card-title, .card-desc, .btn-launch { position: relative; z-index: 1; }
-        .app-card:hover { transform: translateY(-4px); box-shadow: var(--card-hover-shadow); border-color: rgba(155, 93, 229, 0.4); }
+        
+        .app-card:hover { 
+            transform: translateY(-4px); 
+            box-shadow: var(--card-hover-shadow); 
+            border-color: rgba(155, 93, 229, 0.5); 
+        }
+
+        .app-card:hover::after {
+            filter: blur(5px);
+            transform: scale(1.15);
+        }
+
+        /* Background Gambar masing-masing Artikel */
+        .card-dashboard { --card-img: url('img/M-Dashboard.jpg'); }
+        .card-indicator { --card-img: url('img/M-Leading.jpg'); }
+        .card-direct    { --card-img: url('img/M-Direct.jpg'); }
+        .card-pbt       { --card-img: url('img/M-PBT.jpg'); }
+
         .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.85rem; }
         
         .icon-wrapper {
             width: 42px; height: 42px; border-radius: 12px;
             display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
             background: var(--icon-bg); color: var(--icon-color);
-            border: 1px solid rgba(255,255,255,0.05); backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.15); backdrop-filter: blur(10px);
             transition: all 0.3s ease; flex-shrink: 0;
         }
 
@@ -174,8 +213,8 @@
         }
         .global-tooltip.visible { opacity: 1; visibility: visible; }
 
-        .card-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem; text-shadow: 0 1px 2px rgba(0,0,0,0.1); }
-        .card-desc { color: var(--text-muted); font-size: 0.78rem; line-height: 1.45; flex-grow: 1; display: block; margin-bottom: 0.8rem; }
+        .card-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.4rem; text-shadow: 0 1px 3px rgba(0,0,0,0.4); }
+        .card-desc { color: var(--text-muted); font-size: 0.78rem; line-height: 1.45; flex-grow: 1; display: block; margin-bottom: 0.8rem; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
         .card-desc b { color: var(--text-main); }
 
         .btn-launch {
@@ -183,16 +222,15 @@
             width: 100%; padding: 10px 14px; border-radius: 12px;
             background: linear-gradient(135deg, var(--btn-grad-start), var(--btn-grad-end));
             color: white; text-decoration: none; font-weight: 600; font-size: 0.85rem;
-            transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.15);
+            transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.2);
             margin-top: auto; box-shadow: 0 4px 15px var(--btn-shadow); cursor: pointer;
         }
         .btn-launch:hover { transform: translateY(-1px); filter: brightness(1.1); }
 
-        .card-dashboard .icon-wrapper { background: rgba(239, 68, 68, 0.15); color: #ef4444; }
-        .card-indicator .icon-wrapper { background: rgba(245, 158, 11, 0.15); color: #f59e0b; }
-        .card-leads .icon-wrapper { background: rgba(59, 130, 246, 0.15); color: #3b82f6; }
-        .card-direct .icon-wrapper { background: rgba(16, 185, 129, 0.15); color: #10b981; }
-        .card-pbt .icon-wrapper { background: rgba(139, 92, 246, 0.15); color: #8b5cf6; }
+        .card-dashboard .icon-wrapper { background: rgba(239, 68, 68, 0.25); color: #ff8080; }
+        .card-indicator .icon-wrapper { background: rgba(245, 158, 11, 0.25); color: #fcd34d; }
+        .card-direct .icon-wrapper { background: rgba(59, 130, 246, 0.25); color: #60a5fa; }
+        .card-pbt .icon-wrapper { background: rgba(139, 92, 246, 0.25); color: #c084fc; }
 
         .ticker-container {
             margin-top: 1rem; width: 100%; overflow: hidden;
@@ -375,7 +413,7 @@
                     Login <i class="fas fa-arrow-right"></i>
                 </button>
             </form>
-            <div class="login-footnote">Limited only for Team & Leader Region Sumatera</div></div>
+            <div class="login-footnote">Limited only for Team & Leader Region Sumatera</div>
         </div>
     </div>
 
@@ -409,9 +447,9 @@
                         </div>
                     </div>
                 </div>
-                    <button class="action-btn logout-btn" id="logout-btn" title="Logout" style="display:none;" aria-label="Logout">
-                        <i class="fas fa-right-from-bracket"></i>
-                    </button>                    
+                <button class="action-btn logout-btn" id="logout-btn" title="Logout" style="display:none;" aria-label="Logout">
+                    <i class="fas fa-right-from-bracket"></i>
+                </button>                    
             </div>
         </header>
 
@@ -543,11 +581,6 @@
     </div>
 
     <script>
-        // Navigasi tombol tanpa menampilkan URL di status bar browser.
-        // Sebelum membuka link aplikasi (mdashbmi, mleadingbmi, mdirectbmi, mpbtbmi, dst),
-        // pastikan dulu masih ada sesi login tersimpan di localStorage.
-        // Jika sesi sudah dihapus (misalnya setelah klik Logout), user WAJIB login ulang
-        // di portal ini (bmisumatera.vercel.app) sebelum bisa membuka aplikasi lain.
         document.querySelectorAll('.btn-launch').forEach(btn => {
             btn.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -561,8 +594,6 @@
                 if (needsAuth) {
                     const nik = localStorage.getItem('saved_user_nik');
 
-                    // Tidak ada sesi (belum login / sudah logout) -> jangan buka link,
-                    // paksa login dulu di portal ini.
                     if (!nik) {
                         forceShowLogin();
                         return;
@@ -637,7 +668,7 @@
             // Placeholder
         }
 
-        // LOGIN GATE LOGIC + PERSISTENT SESSION (LOCAL STORAGE)
+        // LOGIN GATE LOGIC
         const loginOverlay = document.getElementById('login-overlay');
         const loginCard = document.getElementById('login-card');
         const loginForm = document.getElementById('login-form');
@@ -676,7 +707,6 @@
                 if (user) {
                     executeLogin(user, false);
                 } else {
-                    // NIK tersimpan sudah tidak valid (misal user dihapus dari daftar) -> bersihkan sesi
                     localStorage.removeItem('saved_user_nik');
                 }
             }
@@ -710,7 +740,6 @@
                     if (userLocSep) userLocSep.style.display = 'none';
                 }
         
-                // Logika pembuatan 2 huruf inisial
                 if (user.nama) {
                     const words = user.nama.trim().split(/\s+/).filter(Boolean);
                     if (words.length >= 2) {
@@ -771,9 +800,6 @@
             }
         });
 
-        // Logout: hapus sesi tersimpan di localStorage supaya user WAJIB login ulang
-        // baik saat kembali ke portal ini maupun saat mau membuka aplikasi lain
-        // (mdashbmi, mleadingbmi, mdirectbmi, mpbtbmi) dari bmisumatera.vercel.app.
         logoutBtn.addEventListener('click', function () {
             performLogout();
         });
@@ -790,8 +816,6 @@
             forceShowLogin();
         }
 
-        // Menampilkan kembali overlay login. Dipakai saat logout, maupun saat
-        // user mencoba membuka salah satu aplikasi tanpa sesi login yang valid.
         function forceShowLogin() {
             appContainer.style.display = 'none';
             loginOverlay.style.display = 'flex';
