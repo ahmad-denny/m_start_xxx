@@ -125,16 +125,22 @@
 
         .dashboard-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; flex: 1; }
 
-        /* Style Card & Background Blur */
+        /* Style Card Utama */
         .app-card {
-            border: 1px solid var(--card-border); box-shadow: var(--card-shadow); border-radius: 20px;
-            padding: 1.25rem; display: flex; flex-direction: column;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden; 
-            background-color: var(--card-bg);
+            border: 1px solid var(--card-border); 
+            box-shadow: var(--card-shadow); 
+            border-radius: 20px;
+            padding: 1.25rem; 
+            display: flex; 
+            flex-direction: column;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+            position: relative; 
+            overflow: hidden; 
+            background-color: transparent;
             isolation: isolate;
         }
-
-        /* Layer Background Blur */
+        
+        /* Layer Gambar Background + Blur (Di belakang konten) */
         .app-card::after {
             content: '';
             position: absolute;
@@ -142,34 +148,39 @@
             background-image: var(--card-img);
             background-size: cover;
             background-position: center;
-            filter: blur(8px);
-            transform: scale(1.1); /* Mencegah area pinggir blur terlihat terpotong */
+            filter: blur(12px); /* Blur hanya untuk gambar latar */
+            transform: scale(1.15); /* Mencegah garis putih di pinggiran kartu */
             z-index: -2;
             transition: filter 0.3s ease, transform 0.3s ease;
         }
-
-        /* Layer Overlay Kontras (agar teks terbaca jelas) */
+        
+        /* Layer Overlay Gelap/Terang (Membuat teks tajam & kontras tinggi) */
         .app-card::before {
-            content: ''; position: absolute; inset: 0;
-            background: var(--card-overlay);
-            z-index: -1; pointer-events: none; opacity: 1;
-            transition: background 0.3s ease;
+            content: ''; 
+            position: absolute; 
+            inset: 0;
+            background: var(--card-bg); /* Menggunakan warna overlay dari root */
+            z-index: -1; 
+            pointer-events: none;
         }
-
-        .card-header, .card-title, .card-desc, .btn-launch { position: relative; z-index: 1; }
+        
+        .card-header, .card-title, .card-desc, .btn-launch { 
+            position: relative; 
+            z-index: 1; 
+        }
         
         .app-card:hover { 
             transform: translateY(-4px); 
             box-shadow: var(--card-hover-shadow); 
             border-color: rgba(155, 93, 229, 0.5); 
         }
-
+        
         .app-card:hover::after {
-            filter: blur(5px);
-            transform: scale(1.15);
+            filter: blur(8px);
+            transform: scale(1.2);
         }
-
-        /* Background Gambar masing-masing Artikel */
+        
+        /* Mapping Gambar untuk Setiap Kartu */
         .card-dashboard { --card-img: url('img/M-Dashboard.jpg'); }
         .card-indicator { --card-img: url('img/M-Leading.jpg'); }
         .card-direct    { --card-img: url('img/M-Direct.jpg'); }
