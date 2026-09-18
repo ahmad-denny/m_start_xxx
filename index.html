@@ -127,17 +127,7 @@
 
         /* Style Card Utama */
         .app-card {
-            border: 1px solid var(--card-border); 
-            box-shadow: var(--card-shadow); 
-            border-radius: 20px;
-            padding: 1.25rem; 
-            display: flex; 
-            flex-direction: column;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-            position: relative; 
-            overflow: hidden; 
-            background-color: transparent;
-            isolation: isolate;
+            background-color: transparent !important; /* Hilangkan background dasar card */
         }
         
         /* Layer Gambar Background + Blur (Di belakang konten) */
@@ -155,15 +145,10 @@
         }
         
         /* Layer Overlay Gelap/Terang (Membuat teks tajam & kontras tinggi) */
-        .app-card::before {
-            content: ''; 
-            position: absolute; 
-            inset: 0;
-            background: var(--card-bg); /* Menggunakan warna overlay dari root */
-            z-index: -1; 
-            pointer-events: none;
-        }
-        
+        .app-card:hover::before {
+            background: rgba(0, 0, 0, 0.1); /* Tipiskan overlay (atur ke 0 untuk 100% tanpa lapisan) */
+        }        
+
         .card-header, .card-title, .card-desc, .btn-launch { 
             position: relative; 
             z-index: 1; 
@@ -176,7 +161,7 @@
         }
         
         .app-card:hover::after {
-            filter: blur(0px);
+            filter: blur(0px); /* Gambar murni tajam */
             transform: scale(1);
         }
         
