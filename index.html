@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <style>
         :root {
@@ -863,16 +864,21 @@
         });
 
         function performLogout() {
-            localStorage.removeItem('saved_user_nik');
-            activeUser = null;
-
-            document.getElementById('user-chip').style.display = 'none';
-            if (logoutBtn) logoutBtn.style.display = 'none';
-            nikInput.value = '';
-            loginError.style.display = 'none';
-
-            forceShowLogin();
-        }
+        Swal.fire({
+            title: 'Konfirmasi Keluar',
+            text: 'Apakah Anda yakin ingin keluar?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya, Keluar',
+            cancelButtonText: 'Batal'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                localStorage.removeItem('saved_user_nik');
+                activeUser = null;
+                forceShowLogin();
+            }        
 
         function forceShowLogin() {
             appContainer.style.display = 'none';
