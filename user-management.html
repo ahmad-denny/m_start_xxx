@@ -312,7 +312,7 @@
     @media (max-width: 768px) {
         .app-container { padding: 0.85rem; }
         .table-wrap { overflow-x: auto; }
-        table { min-width: 720px; }
+        table { min-width: 850px; }
         .toolbar { flex-direction: column; align-items: stretch; }
     }
 </style>
@@ -354,7 +354,7 @@
     <div class="note-banner">
         <i class="fas fa-circle-info"></i>
         <div>
-            <b>Catatan penyimpanan:</b> Perubahan (tambah/edit/hapus/nonaktifkan) disimpan di penyimpanan lokal browser ini. Agar perubahan berlaku permanen untuk semua orang, gunakan tombol <b>"Unduh JSON"</b> dan ganti file <code>user_list.json</code> di server dengan file hasil unduhan.
+            <b>Catatan penyimpanan:</b> Field <b>Cabang</b> mengikuti data pada <code>user_list.json</code>. Perubahan (tambah/edit/hapus/nonaktifkan) disimpan di penyimpanan lokal browser ini. Agar perubahan berlaku permanen untuk semua orang, gunakan tombol <b>"Unduh JSON"</b> dan ganti file <code>user_list.json</code> di server dengan file hasil unduhan.
         </div>
     </div>
 
@@ -368,7 +368,7 @@
     <div class="toolbar">
         <div class="search-wrap">
             <i class="fas fa-search"></i>
-            <input type="text" id="search-input" class="search-input" placeholder="Cari NIK, nama, posisi, atau lokasi...">
+            <input type="text" id="search-input" class="search-input" placeholder="Cari NIK, nama, posisi, lokasi, atau cabang...">
         </div>
         <select id="filter-status" class="filter-select">
             <option value="all">Semua Status</option>
@@ -393,6 +393,7 @@
                     <th>Nama</th>
                     <th>Posisi</th>
                     <th>Lokasi</th>
+                    <th>Cabang</th>
                     <th>Role</th>
                     <th>Status</th>
                     <th>Aksi</th>
@@ -433,6 +434,11 @@
                 <label for="f-lokasi">Lokasi</label>
                 <input type="text" id="f-lokasi" placeholder="Contoh: REGION" required>
                 <div class="field-error" id="err-lokasi">Lokasi wajib diisi.</div>
+            </div>
+            <div class="field">
+                <label for="f-cabang">Cabang</label>
+                <input type="text" id="f-cabang" placeholder="Contoh: 211 - MEDAN BALAIKOTA" required>
+                <div class="field-error" id="err-cabang">Cabang wajib diisi.</div>
             </div>
             <div class="field">
                 <label for="f-admin">Role</label>
@@ -481,6 +487,7 @@
             nama: u.nama || '',
             posisi: u.posisi || '',
             lokasi: u.lokasi || '',
+            cabang: u.cabang || '',
             admin: String(u.admin || 'FALSE').toUpperCase() === 'TRUE' ? 'TRUE' : 'FALSE',
             status: String(u.status || 'AKTIF').toUpperCase() === 'NONAKTIF' ? 'NONAKTIF' : 'AKTIF'
         };
@@ -566,7 +573,7 @@
         const adminFilter = document.getElementById('filter-admin').value;
 
         return users.filter(u => {
-            const matchQ = !q || [u.nik, u.nama, u.posisi, u.lokasi].join(' ').toLowerCase().includes(q);
+            const matchQ = !q || [u.nik, u.nama, u.posisi, u.lokasi, u.cabang].join(' ').toLowerCase().includes(q);
             const matchStatus = statusFilter === 'all' || (statusFilter === 'aktif' && u.status === 'AKTIF') || (statusFilter === 'nonaktif' && u.status === 'NONAKTIF');
             const matchAdmin = adminFilter === 'all' || (adminFilter === 'admin' && u.admin === 'TRUE') || (adminFilter === 'user' && u.admin === 'FALSE');
             return matchQ && matchStatus && matchAdmin;
@@ -593,6 +600,7 @@
                 <td class="nama-cell">${escapeHtml(u.nama)}</td>
                 <td>${escapeHtml(u.posisi)}</td>
                 <td>${escapeHtml(u.lokasi)}</td>
+                <td>${escapeHtml(u.cabang)}</td>
                 <td>${u.admin === 'TRUE' ? '<span class="badge badge-admin"><i class="fas fa-shield-halved"></i> Admin</span>' : '<span class="badge badge-off">User</span>'}</td>
                 <td>${u.status === 'AKTIF' ? '<span class="badge badge-on"><i class="fas fa-circle-check"></i> Aktif</span>' : '<span class="badge badge-off"><i class="fas fa-circle-minus"></i> Nonaktif</span>'}</td>
                 <td>
@@ -625,6 +633,7 @@
         document.getElementById('f-nama').value = '';
         document.getElementById('f-posisi').value = '';
         document.getElementById('f-lokasi').value = '';
+        document.getElementById('f-cabang').value = '';
         document.getElementById('f-admin').value = 'FALSE';
         document.getElementById('f-status').value = 'AKTIF';
         clearFormErrors();
@@ -642,6 +651,7 @@
         document.getElementById('f-nama').value = u.nama;
         document.getElementById('f-posisi').value = u.posisi;
         document.getElementById('f-lokasi').value = u.lokasi;
+        document.getElementById('f-cabang').value = u.cabang;
         document.getElementById('f-admin').value = u.admin;
         document.getElementById('f-status').value = u.status;
         clearFormErrors();
@@ -663,6 +673,7 @@
         const nama = document.getElementById('f-nama').value.trim();
         const posisi = document.getElementById('f-posisi').value.trim();
         const lokasi = document.getElementById('f-lokasi').value.trim();
+        const cabang = document.getElementById('f-cabang').value.trim();
         const admin = document.getElementById('f-admin').value;
         const status = document.getElementById('f-status').value;
 
@@ -671,6 +682,7 @@
         if (!nama) { document.getElementById('err-nama').style.display = 'block'; hasError = true; }
         if (!posisi) { document.getElementById('err-posisi').style.display = 'block'; hasError = true; }
         if (!lokasi) { document.getElementById('err-lokasi').style.display = 'block'; hasError = true; }
+        if (!cabang) { document.getElementById('err-cabang').style.display = 'block'; hasError = true; }
 
         const isEdit = !!originalNik;
         const dupExists = users.some(u => u.nik === nik && u.nik !== originalNik);
@@ -686,7 +698,7 @@
 
         if (hasError) return;
 
-        const newUser = normalizeUser({ nik, nama, posisi, lokasi, admin, status });
+        const newUser = normalizeUser({ nik, nama, posisi, lokasi, cabang, admin, status });
 
         if (isEdit) {
             const idx = users.findIndex(u => u.nik === originalNik);
