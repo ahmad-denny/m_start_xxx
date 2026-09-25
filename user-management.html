@@ -436,8 +436,8 @@
                 <div class="field-error" id="err-lokasi">Lokasi wajib diisi.</div>
             </div>
             <div class="field">
-                <label for="f-kodecabang">Lokasi</label>
-                <input type="text" id="f-kodecabang" placeholder="Contoh: REGION" required>
+                <label for="f-cabang">Lokasi</label>
+                <input type="text" id="f-cabang" placeholder="Contoh: REGION" required>
                 <div class="field-error" id="err-lokasi">Kode Cabang wajib diisi.</div>
             </div>
             <div class="field">
@@ -599,7 +599,7 @@
                 <td class="nama-cell">${escapeHtml(u.nama)}</td>
                 <td>${escapeHtml(u.posisi)}</td>
                 <td>${escapeHtml(u.lokasi)}</td>
-                <td>${escapeHtml(u.kodecabang)}</td>
+                <td>${escapeHtml(u.cabang)}</td>
                 <td>${u.admin === 'TRUE' ? '<span class="badge badge-admin"><i class="fas fa-shield-halved"></i> Admin</span>' : '<span class="badge badge-off">User</span>'}</td>
                 <td>${u.status === 'AKTIF' ? '<span class="badge badge-on"><i class="fas fa-circle-check"></i> Aktif</span>' : '<span class="badge badge-off"><i class="fas fa-circle-minus"></i> Nonaktif</span>'}</td>
                 <td>
@@ -632,7 +632,7 @@
         document.getElementById('f-nama').value = '';
         document.getElementById('f-posisi').value = '';
         document.getElementById('f-lokasi').value = '';
-        document.getElementById('f-kodecabang').value = '';
+        document.getElementById('f-cabang').value = '';
         document.getElementById('f-admin').value = 'FALSE';
         document.getElementById('f-status').value = 'AKTIF';
         clearFormErrors();
@@ -650,7 +650,7 @@
         document.getElementById('f-nama').value = u.nama;
         document.getElementById('f-posisi').value = u.posisi;
         document.getElementById('f-lokasi').value = u.lokasi;
-        document.getElementById('f-kodecabang').value = u.kodecabang;
+        document.getElementById('f-cabang').value = u.cabang;
         document.getElementById('f-admin').value = u.admin;
         document.getElementById('f-status').value = u.status;
         clearFormErrors();
@@ -672,7 +672,7 @@
         const nama = document.getElementById('f-nama').value.trim();
         const posisi = document.getElementById('f-posisi').value.trim();
         const lokasi = document.getElementById('f-lokasi').value.trim();
-        const kodecabang = document.getElementById('f-kodecabang').value.trim();
+        const cabang = document.getElementById('f-cabang').value.trim();
         const admin = document.getElementById('f-admin').value;
         const status = document.getElementById('f-status').value;
 
