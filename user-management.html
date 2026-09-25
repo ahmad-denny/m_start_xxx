@@ -477,6 +477,7 @@
 
 <script>
     const STORAGE_KEY = 'bmi_user_list_v1';
+    const STORAGE_VERSION_KEY = 'bmi_user_list_v1_srcver';
     let users = [];
     let currentUser = null;
     let pendingAction = null; // { type: 'delete'|'toggle', nik }
@@ -508,12 +509,23 @@
         localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
     }
 
+    function hashStr(str) {
+        // Simple djb2 hash, cukup untuk mendeteksi perubahan isi file (bukan untuk keamanan).
+        let hash = 5381;
+        for (let i = 0; i < str.length; i++) {
+            hash = ((hash << 5) + hash) + str.charCodeAt(i);
+            hash |= 0;
+        }
+        return String(hash);
+    }
+
     async function seedFromJsonFile() {
         const res = await fetch('user_list.json', { cache: 'no-store' });
         if (!res.ok) throw new Error('Gagal memuat user_list.json');
-        const data = await res.json();
+        const text = await res.text();
+        const data = JSON.parse(text);
         const list = Array.isArray(data.user_list) ? data.user_list : [];
-        return list.map(normalizeUser);
+        return { list: list.map(normalizeUser), version: hashStr(text) };
     }
 
     function showToast(message, type = 'success') {
@@ -539,20 +551,31 @@
             return;
         }
 
+        const stored = loadFromStorage();
+        const storedVersion = localStorage.getItem(STORAGE_VERSION_KEY);
+
         try {
-            let stored = loadFromStorage();
-            if (!stored) {
-                stored = await seedFromJsonFile();
-                users = stored;
+            const seeded = await seedFromJsonFile();
+            if (!stored || storedVersion !== seeded.version) {
+                // user_list.json baru pertama kali dimuat, atau isinya sudah berubah
+                // (misal ada field baru seperti "cabang") sejak terakhir disimpan di cache.
+                users = seeded.list;
                 saveToStorage();
+                localStorage.setItem(STORAGE_VERSION_KEY, seeded.version);
+                if (stored) showToast('Data user diperbarui dari user_list.json.', 'success');
             } else {
                 users = stored;
             }
         } catch (err) {
-            document.getElementById('denied-title').textContent = 'Gagal Memuat Data';
-            document.getElementById('denied-text').textContent = 'Tidak dapat memuat user_list.json. Hubungi administrator sistem.';
-            showScreen('denied');
-            return;
+            if (stored) {
+                // Gagal fetch (mis. offline), tapi masih ada data cache -> pakai itu saja.
+                users = stored;
+            } else {
+                document.getElementById('denied-title').textContent = 'Gagal Memuat Data';
+                document.getElementById('denied-text').textContent = 'Tidak dapat memuat user_list.json. Hubungi administrator sistem.';
+                showScreen('denied');
+                return;
+            }
         }
 
         currentUser = users.find(u => u.nik === String(nik).trim());
