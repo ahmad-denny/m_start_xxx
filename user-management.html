@@ -393,6 +393,7 @@
                     <th>Nama</th>
                     <th>Posisi</th>
                     <th>Lokasi</th>
+                    <th>Kode Cabang</th>
                     <th>Role</th>
                     <th>Status</th>
                     <th>Aksi</th>
@@ -433,6 +434,11 @@
                 <label for="f-lokasi">Lokasi</label>
                 <input type="text" id="f-lokasi" placeholder="Contoh: REGION" required>
                 <div class="field-error" id="err-lokasi">Lokasi wajib diisi.</div>
+            </div>
+            <div class="field">
+                <label for="f-kodecabang">Lokasi</label>
+                <input type="text" id="f-kodecabang" placeholder="Contoh: REGION" required>
+                <div class="field-error" id="err-lokasi">Kode Cabang wajib diisi.</div>
             </div>
             <div class="field">
                 <label for="f-admin">Role</label>
@@ -625,6 +631,7 @@
         document.getElementById('f-nama').value = '';
         document.getElementById('f-posisi').value = '';
         document.getElementById('f-lokasi').value = '';
+        document.getElementById('f-kodecabang').value = '';
         document.getElementById('f-admin').value = 'FALSE';
         document.getElementById('f-status').value = 'AKTIF';
         clearFormErrors();
@@ -642,6 +649,7 @@
         document.getElementById('f-nama').value = u.nama;
         document.getElementById('f-posisi').value = u.posisi;
         document.getElementById('f-lokasi').value = u.lokasi;
+        document.getElementById('f-kodecabang').value = u.kodecabang;
         document.getElementById('f-admin').value = u.admin;
         document.getElementById('f-status').value = u.status;
         clearFormErrors();
@@ -663,6 +671,7 @@
         const nama = document.getElementById('f-nama').value.trim();
         const posisi = document.getElementById('f-posisi').value.trim();
         const lokasi = document.getElementById('f-lokasi').value.trim();
+        const kodecabang = document.getElementById('f-kodecabang').value.trim();
         const admin = document.getElementById('f-admin').value;
         const status = document.getElementById('f-status').value;
 
