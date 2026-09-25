@@ -393,7 +393,7 @@
                     <th>Nama</th>
                     <th>Posisi</th>
                     <th>Lokasi</th>
-                    <th>Kode Cabang</th>
+                    <th>Cabang</th>
                     <th>Role</th>
                     <th>Status</th>
                     <th>Aksi</th>
@@ -436,9 +436,9 @@
                 <div class="field-error" id="err-lokasi">Lokasi wajib diisi.</div>
             </div>
             <div class="field">
-                <label for="f-cabang">Lokasi</label>
+                <label for="f-cabang">Kode Cabang</label>
                 <input type="text" id="f-cabang" placeholder="Contoh: REGION" required>
-                <div class="field-error" id="err-lokasi">Kode Cabang wajib diisi.</div>
+                <div class="field-error" id="err-cabang">Kode Cabang wajib diisi.</div>
             </div>
             <div class="field">
                 <label for="f-admin">Role</label>
@@ -487,6 +487,7 @@
             nama: u.nama || '',
             posisi: u.posisi || '',
             lokasi: u.lokasi || '',
+            cabang: u.cabang || '',
             admin: String(u.admin || 'FALSE').toUpperCase() === 'TRUE' ? 'TRUE' : 'FALSE',
             status: String(u.status || 'AKTIF').toUpperCase() === 'NONAKTIF' ? 'NONAKTIF' : 'AKTIF'
         };
@@ -572,7 +573,7 @@
         const adminFilter = document.getElementById('filter-admin').value;
 
         return users.filter(u => {
-            const matchQ = !q || [u.nik, u.nama, u.posisi, u.lokasi].join(' ').toLowerCase().includes(q);
+            const matchQ = !q || [u.nik, u.nama, u.posisi, u.lokasi, u.cabang].join(' ').toLowerCase().includes(q);
             const matchStatus = statusFilter === 'all' || (statusFilter === 'aktif' && u.status === 'AKTIF') || (statusFilter === 'nonaktif' && u.status === 'NONAKTIF');
             const matchAdmin = adminFilter === 'all' || (adminFilter === 'admin' && u.admin === 'TRUE') || (adminFilter === 'user' && u.admin === 'FALSE');
             return matchQ && matchStatus && matchAdmin;
@@ -681,6 +682,7 @@
         if (!nama) { document.getElementById('err-nama').style.display = 'block'; hasError = true; }
         if (!posisi) { document.getElementById('err-posisi').style.display = 'block'; hasError = true; }
         if (!lokasi) { document.getElementById('err-lokasi').style.display = 'block'; hasError = true; }
+        if (!cabang) { document.getElementById('err-cabang').style.display = 'block'; hasError = true; }
 
         const isEdit = !!originalNik;
         const dupExists = users.some(u => u.nik === nik && u.nik !== originalNik);
@@ -696,7 +698,7 @@
 
         if (hasError) return;
 
-        const newUser = normalizeUser({ nik, nama, posisi, lokasi, admin, status });
+        const newUser = normalizeUser({ nik, nama, posisi, lokasi, cabang, admin, status });
 
         if (isEdit) {
             const idx = users.findIndex(u => u.nik === originalNik);
