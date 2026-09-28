@@ -388,9 +388,9 @@
       "nik": "20120627",
       "nama": "TAUFIK APRIANSYAH",
       "posisi": "RFS",
-      "lokasi": "PALEMBANG",
+      "lokasi": "REGION",
       "admin": "FALSE",
-      "cabang": "361 - PALEMBANG"
+      "cabang": "REGION"
     },
     {
       "nik": "20060123",
@@ -756,7 +756,7 @@
       "nik": "20110531",
       "nama": "VICRY SAPUTRA",
       "posisi": "BIC",
-      "lokasi": "MEDAN",
+      "lokasi": "REGION",
       "admin": "FALSE",
       "cabang": "REGION"
     },
@@ -796,25 +796,25 @@
       "nik": "20100610",
       "nama": "MUTIA NINGSIH",
       "posisi": "BIC",
-      "lokasi": "MEDAN",
+      "lokasi": "MEDAN BARU",
       "admin": "FALSE",
-      "cabang": "REGION"
+      "cabang": "482 - MEDAN BARU"
     },
     {
       "nik": "20150104",
       "nama": "BAGUS RAMADHAN",
       "posisi": "BIC",
-      "lokasi": "MEDAN",
+      "lokasi": "MEDAN BALAIKOTA",
       "admin": "FALSE",
-      "cabang": "REGION"
+      "cabang": "211 - MEDAN BALAIKOTA"
     },
     {
       "nik": "20131198",
       "nama": "MUKARRAM",
       "posisi": "BIC",
-      "lokasi": "ACEH",
+      "lokasi": "BANDA ACEH",
       "admin": "FALSE",
-      "cabang": "REGION"
+      "cabang": "241 - BANDA ACEH"
     },
     {
       "nik": "20121494",
@@ -860,9 +860,9 @@
       "nik": "20140502",
       "nama": "SANDY RIZA SYAFPUTRA",
       "posisi": "BIC",
-      "lokasi": "PALEMBANG",
+      "lokasi": "KCP PLAJU",
       "admin": "FALSE",
-      "cabang": "361 - PALEMBANG"
+      "cabang": "366 - KCP PLAJU"
     },
     {
       "nik": "20121125",
@@ -916,9 +916,9 @@
       "nik": "20080279",
       "nama": "INDAH RAHMAWATI ABDI",
       "posisi": "BSS",
-      "lokasi": "MEDAN",
+      "lokasi": "MEDAN BALAIKOTA",
       "admin": "FALSE",
-      "cabang": "REGION"
+      "cabang": "211 - MEDAN BALAIKOTA"
     },
     {
       "nik": "20120898",
@@ -980,17 +980,17 @@
       "nik": "20180187",
       "nama": "ACHSAN",
       "posisi": "RCOM",
-      "lokasi": "MEDAN BALAIKOTA",
+      "lokasi": "REGION",
       "admin": "FALSE",
-      "cabang": "211 - MEDAN BALAIKOTA"
+      "cabang": "REGION"
     },
     {
       "nik": "20140304",
       "nama": "FITRAHADI PRESA",
       "posisi": "RCS",
-      "lokasi": "MEDAN BALAIKOTA",
+      "lokasi": "REGION",
       "admin": "FALSE",
-      "cabang": "211 - MEDAN BALAIKOTA"
+      "cabang": "REGION"
     },
     {
       "nik": "20121044",
